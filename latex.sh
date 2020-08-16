@@ -32,7 +32,12 @@ then
         echo "获取《计算机学报》的模板"
         echo "git clone https://github.com/CTeX-org/chinesejournal.git"
         echo
-        echo "构建引用 BibTeX example.bib"
+        echo "构建引用"
+        echo "1. 在引用论文处添加\cite{bib_paper}"
+        echo "2. 在example.bib中添加对应@article{bib_paper,...}"
+        echo "3. BibTeX 运行"
+        echo "4. 快速构建 运行"
+        echo "5. 快速构建 运行"
     elif [ $1 == "0" ]
     then
         error=0
