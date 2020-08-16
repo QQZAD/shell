@@ -531,6 +531,9 @@ echo
 echo "删除git仓库"
 echo "rm -rf .git .gitignore .gitmodules"
 echo
+echo "git的zip文件的网址"
+echo "https://codeload.github.com/QQZAD/Computer-Network/zip/master"
+echo
 echo "Problem with the SSL CA cert (path? access rights?)"
 echo "sudo apt-get install ca-certificates -y"
 echo
