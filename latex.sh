@@ -332,9 +332,9 @@ then
         echo "9. 若没有成功多次重复7-8"
         echo
         texmaker_ini=${HOME}/.config/xm1/texmaker.ini
-        echo "1213132132132">> $texmaker_ini
         # gedit ${HOME}/.config/xm1/texmaker.ini
-        echo "[1] LaTeX——\"/usr/local/texlive/$year/bin/x86_64-linux/latex\" -interaction=nonstopmode %.tex"
+        new_Latex="Tools\Latex=\"\\\"/usr/local/texlive/2020/bin/x86_64-linux/latex\\\" -interaction=nonstopmode %.tex\""
+        new_Latex="fdsfsdgsdgrter"
         echo "[2] PdfLaTex/Dvipdfm——\"/usr/local/texlive/$year/bin/x86_64-linux/pdflatex\" -interaction=nonstopmode %.tex"
         echo "[3] XeLaTeX——\"/usr/local/texlive/$year/bin/x86_64-linux/xelatex\" -interaction=nonstopmode %.tex"
         echo "[4] Latexmk——\"/usr/local/texlive/$year/bin/x86_64-linux/latexmk\" -e \"\$pdflatex=q/pdflatex -interaction=nonstopmode/\" -pdf %.tex"
@@ -345,10 +345,14 @@ then
         echo "[9] metapost——\"/usr/local/texlive/$year/bin/x86_64-linux/mpost\" --interaction nonstopmode "
         echo "[10] Asymptote——\"/usr/local/texlive/$year/bin/x86_64-linux/asy\" %.asy"
         echo "[11] Add to PATH——/usr/local/texlive/$year/bin/x86_64-linux/"
-        Latex=$(grep -i "Tools\\\Latex=" $texmaker_ini)
-        echo $Latex
+        old_Latex=$(grep -i "Tools\\\Latex=" $texmaker_ini)
+        echo $old_Latex
+        old_Latex="Tools\Latex=\"\\\"/usr/local/texlive/2020/bin/x86_64-linux/latex\\\" -interaction=nonstopmode %.tex\""
+        sed -i "s#$old_Latex#${new_Latex}#g" $texmaker_ini
+        echo $new_Latex
         Pdflatex=$(grep -i "Tools\\\Pdflatex=" $texmaker_ini)
-        echo $Pdflatex
+        sed -i "s#$old_Pdflatex#$new_Pdflatex#g" $texmaker_ini
+        echo $new_Pdflatex
     elif [ $1 == "0" ]
     then
         error=0
