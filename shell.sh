@@ -142,3 +142,10 @@ echo
 echo "比较两个文件是否相同"
 echo "diff filename1 filename2"
 echo
+echo "找到\${HOME}/test.txt中含有key\no的一行"
+echo "find=\$(grep -i \"key\\\\\\no\" \${HOME}/test.txt)"
+echo "echo \$find"
+echo
+echo "将\${HOME}/test.txt中的old替换为new"
+echo "sed -i \"s#old#new#g\" \${HOME}/test.txt"
+echo "sed -i \"s/old/new/g\" \${HOME}/test.txt"

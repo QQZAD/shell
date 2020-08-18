@@ -5,7 +5,7 @@ if [ -n "$file_name" ]
 then
     old_string="<policy domain=\"coder\" rights=\"none\" pattern=\"EPS\" />"
     new_string="<policy domain=\"coder\" rights=\"read|write\" pattern=\"EPS\" />"
-    sudo sed "s#$old_string#$new_string#g" /etc/ImageMagick-6/policy.xml
+    sudo sed -i "s#$old_string#$new_string#g" /etc/ImageMagick-6/policy.xml
     # sudo gedit /etc/ImageMagick-6/policy.xml
     echo "将png图片转换为eps图片..."
     file_names=(${file_name//\ / })

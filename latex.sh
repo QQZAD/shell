@@ -331,8 +331,9 @@ then
         echo "8. 将BibTeX切换为快速构建 运行"
         echo "9. 若没有成功多次重复7-8"
         echo
-        texmaker_ini="${HOME}/.config/xm1/texmaker.ini"
-        echo "注意！！！启动Texmaker——选项——配置Texmaker如下："
+        texmaker_ini=${HOME}/.config/xm1/texmaker.ini
+        echo "1213132132132">> $texmaker_ini
+        # gedit ${HOME}/.config/xm1/texmaker.ini
         echo "[1] LaTeX——\"/usr/local/texlive/$year/bin/x86_64-linux/latex\" -interaction=nonstopmode %.tex"
         echo "[2] PdfLaTex/Dvipdfm——\"/usr/local/texlive/$year/bin/x86_64-linux/pdflatex\" -interaction=nonstopmode %.tex"
         echo "[3] XeLaTeX——\"/usr/local/texlive/$year/bin/x86_64-linux/xelatex\" -interaction=nonstopmode %.tex"
@@ -344,9 +345,9 @@ then
         echo "[9] metapost——\"/usr/local/texlive/$year/bin/x86_64-linux/mpost\" --interaction nonstopmode "
         echo "[10] Asymptote——\"/usr/local/texlive/$year/bin/x86_64-linux/asy\" %.asy"
         echo "[11] Add to PATH——/usr/local/texlive/$year/bin/x86_64-linux/"
-        Latex=(grep -i "Tools\\\\Latex=" $texmaker_ini)
+        Latex=$(grep -i "Tools\\\Latex=" $texmaker_ini)
         echo $Latex
-        Pdflatex=(grep -i "Tools\\\\Pdflatex=" $texmaker_ini)
+        Pdflatex=$(grep -i "Tools\\\Pdflatex=" $texmaker_ini)
         echo $Pdflatex
     elif [ $1 == "0" ]
     then
