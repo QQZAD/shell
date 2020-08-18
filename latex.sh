@@ -325,7 +325,7 @@ then
         echo "\end{tabular}"
         echo "\end{table}"
         echo
-        echo "使用BibTeX为论文添加参考文献"
+        echo "添加参考文献"
         echo "1. 在.tex同级目录下建立example.bib文件"
         echo "2. 在.tex中添加\bibliography{example}"
         echo "3. 为一篇参考文献指定一个自定义的唯一标识符cite_paper"
