@@ -149,3 +149,9 @@ echo
 echo "将\${HOME}/test.txt中的old替换为new"
 echo "sed -i \"s#old#new#g\" \${HOME}/test.txt"
 echo "sed -i \"s/old/new/g\" \${HOME}/test.txt"
+echo
+echo "递归查找文件夹shell下所有包含\${HOME}或latex的文件"
+echo "grep -r -E \"\\\\\\\${HOME}|latex\" \${HOME}/shell"
+echo
+echo "递归查找文件夹shell下所有包含\${HOME}和latex的文件"
+echo "grep -r \"\\\\\\\${HOME}\" \${HOME}/shell | grep \"latex\""

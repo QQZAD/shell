@@ -328,12 +328,6 @@ echo
 echo "删除防火墙ssh服务端口"
 echo "sudo ufw delete allow ssh"
 echo
-echo "递归查找文件夹test下所有包含\"\${HOME}string\"或\"hello\"字符串的文件"
-echo "grep -r -E \"\\\${HOME}string|hello\" ~/test"
-echo
-echo "递归查找文件夹test下所有包含\"\${HOME}string\"和\"hello\"字符串的文件"
-echo "grep -r \"\\\${HOME}string\" ~/test | grep \"hello\""
-echo
 echo "gedit查找和替换"
 echo "Ctrl+H"
 echo
