@@ -352,3 +352,5 @@ echo "who"
 echo
 echo "查看后台正在运行的程序"
 echo "ps -aux"
+echo
+echo "搜索(S)-查找(F)..."
