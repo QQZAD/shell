@@ -11,19 +11,6 @@ then
     if [ $1 == "1" ]
     then
         error=0
-        echo "注意！！！启动Texmaker——选项——配置Texmaker如下："
-        echo "[1] LaTeX——\"/usr/local/texlive/$year/bin/x86_64-linux/latex\" -interaction=nonstopmode %.tex"
-        echo "[2] PdfLaTex/Dvipdfm——\"/usr/local/texlive/$year/bin/x86_64-linux/pdflatex\" -interaction=nonstopmode %.tex"
-        echo "[3] XeLaTeX——\"/usr/local/texlive/$year/bin/x86_64-linux/xelatex\" -interaction=nonstopmode %.tex"
-        echo "[4] Latexmk——\"/usr/local/texlive/$year/bin/x86_64-linux/latexmk\" -e \"\$pdflatex=q/pdflatex -interaction=nonstopmode/\" -pdf %.tex"
-        echo "[5] Bib(la)tex——\"/usr/local/texlive/$year/bin/x86_64-linux/bibtex\" %.aux"
-        echo "[6] Makeindex——\"/usr/local/texlive/$year/bin/x86_64-linux/makeindex\" %.idx"
-        echo "[7] dvips——\"/usr/local/texlive/$year/bin/x86_64-linux/dvips\" -o %.ps %.dvi"
-        echo "[8] Dvipdfm——\"/usr/local/texlive/$year/bin/x86_64-linux/dvipdfm\" %.dvi"
-        echo "[9] metapost——\"/usr/local/texlive/$year/bin/x86_64-linux/mpost\" --interaction nonstopmode "
-        echo "[10] Asymptote——\"/usr/local/texlive/$year/bin/x86_64-linux/asy\" %.asy"
-        echo "[11] Add to PATH——/usr/local/texlive/$year/bin/x86_64-linux/"
-        echo
         echo "英文论文：选项——配置Texmaker——快速构建——快速构建命令——PdfLaTeX + 查看PDF——OK"
         echo "获取IEEE的模板"
         echo "git clone https://github.com/latextemplates/IEEE.git"
@@ -115,7 +102,7 @@ then
         echo "&\quad \sum_{i=1}^{n}{(x_i+y_i)}\leq 1, \forall i \in \mathbb{U} \label{eq:constraint_2}\\\\"
         echo "&\quad \sum_{i=1}^{n}{(x_i+y_i+z_i)}\geq 1, \forall i \in \mathbb{U} \label{eq:constraint_3}."
         echo "\end{align}"
-        echo  
+        echo
         echo "引理"
         echo ".tex文件头部添加一次\newtheorem{lemma}{Lemma}[section]"
         echo "\begin{lemma} \label{lemma_1}"
@@ -343,6 +330,24 @@ then
         echo "7. 将快速构建切换为BibTeX 运行"
         echo "8. 将BibTeX切换为快速构建 运行"
         echo "9. 若没有成功多次重复7-8"
+        echo
+        texmaker_ini="${HOME}/.config/xm1/texmaker.ini"
+        echo "注意！！！启动Texmaker——选项——配置Texmaker如下："
+        echo "[1] LaTeX——\"/usr/local/texlive/$year/bin/x86_64-linux/latex\" -interaction=nonstopmode %.tex"
+        echo "[2] PdfLaTex/Dvipdfm——\"/usr/local/texlive/$year/bin/x86_64-linux/pdflatex\" -interaction=nonstopmode %.tex"
+        echo "[3] XeLaTeX——\"/usr/local/texlive/$year/bin/x86_64-linux/xelatex\" -interaction=nonstopmode %.tex"
+        echo "[4] Latexmk——\"/usr/local/texlive/$year/bin/x86_64-linux/latexmk\" -e \"\$pdflatex=q/pdflatex -interaction=nonstopmode/\" -pdf %.tex"
+        echo "[5] Bib(la)tex——\"/usr/local/texlive/$year/bin/x86_64-linux/bibtex\" %.aux"
+        echo "[6] Makeindex——\"/usr/local/texlive/$year/bin/x86_64-linux/makeindex\" %.idx"
+        echo "[7] dvips——\"/usr/local/texlive/$year/bin/x86_64-linux/dvips\" -o %.ps %.dvi"
+        echo "[8] Dvipdfm——\"/usr/local/texlive/$year/bin/x86_64-linux/dvipdfm\" %.dvi"
+        echo "[9] metapost——\"/usr/local/texlive/$year/bin/x86_64-linux/mpost\" --interaction nonstopmode "
+        echo "[10] Asymptote——\"/usr/local/texlive/$year/bin/x86_64-linux/asy\" %.asy"
+        echo "[11] Add to PATH——/usr/local/texlive/$year/bin/x86_64-linux/"
+        Latex=(grep -i "Tools\\\\Latex=" $texmaker_ini)
+        echo $Latex
+        Pdflatex=(grep -i "Tools\\\\Pdflatex=" $texmaker_ini)
+        echo $Pdflatex
     elif [ $1 == "0" ]
     then
         error=0
