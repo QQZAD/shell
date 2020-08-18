@@ -144,14 +144,34 @@ echo "diff filename1 filename2"
 echo
 echo "找到\${HOME}/test.txt中含有key\no的一行"
 echo "find=\$(grep -i \"key\\\\\\no\" \${HOME}/test.txt)"
+echo "find=\$(grep -n \"key\\\\\\no\" \${HOME}/test.txt)"
 echo "echo \$find"
+echo
+echo "将\${HOME}/test.txt中含有key\no的一行删除"
+echo "sed -i '/key\\\no/d' \${HOME}/test.txt"
+echo
+echo "在\${HOME}/test.txt第2行后面插入key\no"
+echo "sed -i '3i key\\\no' \${HOME}/test.txt"
+echo "sed -i \"3i key\\\\\no\" \${HOME}/test.txt"
 echo
 echo "将\${HOME}/test.txt中的old替换为new"
 echo "sed -i \"s#old#new#g\" \${HOME}/test.txt"
 echo "sed -i \"s/old/new/g\" \${HOME}/test.txt"
+echo
+echo "sed命令中的\"和'有一定区别"
+echo "\"会对引号包含的部分进行处理"
+echo "'不会对引号包含的部分进行任何处理"
 echo
 echo "递归查找文件夹shell下所有包含\${HOME}或latex的文件"
 echo "grep -r -E \"\\\\\\\${HOME}|latex\" \${HOME}/shell"
 echo
 echo "递归查找文件夹shell下所有包含\${HOME}和latex的文件"
 echo "grep -r \"\\\\\\\${HOME}\" \${HOME}/shell | grep \"latex\""
+echo
+echo "var=\"123:abd:456\""
+echo "删除:左边字符保留:右边字符"
+echo "echo \"\${var#*:}\""
+echo "echo \"\${var##*:}\""
+echo "删除:右边字符保留:左边字符"
+echo "echo \"\${var%:*}\""
+echo "echo \"\${var%%:*}\""
