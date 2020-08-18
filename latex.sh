@@ -115,8 +115,7 @@ then
         echo "&\quad \sum_{i=1}^{n}{(x_i+y_i)}\leq 1, \forall i \in \mathbb{U} \label{eq:constraint_2}\\\\"
         echo "&\quad \sum_{i=1}^{n}{(x_i+y_i+z_i)}\geq 1, \forall i \in \mathbb{U} \label{eq:constraint_3}."
         echo "\end{align}"
-        echo
-        echo "\usepackage{amsthm}"
+        echo  
         echo "引理"
         echo ".tex文件头部添加一次\newtheorem{lemma}{Lemma}[section]"
         echo "\begin{lemma} \label{lemma_1}"
@@ -130,6 +129,7 @@ then
         echo "\end{thm}"
         echo
         echo "证明"
+        echo "\usepackage{amsthm}"
         echo "将证毕符号改为黑色方框"
         echo ".tex文件头部添加一次\renewcommand{\qedsymbol}{$\blacksquare$}"
         echo "\begin{proof} \label{proof_1}"
@@ -288,6 +288,7 @@ then
         echo "\end{figure}"
         echo
         echo "表格的使用"
+        echo "\usepackage{booktabs}"
         echo "在.tex头文件头部添加一次\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}"
         echo "占据两版"
         echo "\begin{table*}"
