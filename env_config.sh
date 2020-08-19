@@ -17,7 +17,8 @@ sudo apt-get -y install python3-pip
 pip install --upgrade pip
 pip3 install --upgrade pip
 openssl version -a
-sudo apt-get -y install screen
-sudo apt-get -y install gparted
-screen -version
+sudo apt-get -y install kolourpaint4
+# sudo apt-get -y install screen
+# sudo apt-get -y install gparted
+# screen -version
 ./clean.sh
