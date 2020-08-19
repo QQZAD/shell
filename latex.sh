@@ -77,20 +77,24 @@ then
         echo "→ \to"
         echo
         echo "大运算符"
+        echo "\usepackage{amsmath,amssymb,amsfonts}"
         echo "∑ \sum_{i=1}^{n}{(x_i+y_i)}"
         echo "∏ \prod_{i=1}^{n}{(x_i+y_i)}"
         echo "∪ \bigcup_{i=1}^{n}{X_i}"
         echo "∩ \bigcap_{i=1}^{n}{X_i}"
         echo
         echo "文字中的公式"
+        echo "\usepackage{amsmath,amssymb,amsfonts}"
         echo "$\mathbb{T} = \{1, 2, ...,10\}$"
         echo
         echo "简单数学公式"
+        echo "\usepackage{amsmath,amssymb,amsfonts}"
         echo "\begin{equation}"
         echo "x^i_{j,k}=\frac{i}{j \cdot k} \label{equation1}"
         echo "\end{equation}"
         echo
         echo "数学模型目标和约束"
+        echo "\usepackage{amsmath,amssymb,amsfonts}"
         echo "\begin{align}"
         echo "\begin{split}"
         echo "\mathop{\arg\min}_{x_i,y_i,z_i}"
@@ -333,24 +337,98 @@ then
         echo
         texmaker_ini=${HOME}/.config/xm1/texmaker.ini
         # gedit ${HOME}/.config/xm1/texmaker.ini
-        new_Latex="Tools\\\Latex=\"\\\\\"/usr/local/texlive/2020/bin/x86_64-linux/latex\\\\\" -interaction=nonstopmode %.tex\""
-        echo "[2] PdfLaTex/Dvipdfm——\"/usr/local/texlive/$year/bin/x86_64-linux/pdflatex\" -interaction=nonstopmode %.tex"
-        echo "[3] XeLaTeX——\"/usr/local/texlive/$year/bin/x86_64-linux/xelatex\" -interaction=nonstopmode %.tex"
-        echo "[4] Latexmk——\"/usr/local/texlive/$year/bin/x86_64-linux/latexmk\" -e \"\$pdflatex=q/pdflatex -interaction=nonstopmode/\" -pdf %.tex"
-        echo "[5] Bib(la)tex——\"/usr/local/texlive/$year/bin/x86_64-linux/bibtex\" %.aux"
-        echo "[6] Makeindex——\"/usr/local/texlive/$year/bin/x86_64-linux/makeindex\" %.idx"
-        echo "[7] dvips——\"/usr/local/texlive/$year/bin/x86_64-linux/dvips\" -o %.ps %.dvi"
-        echo "[8] Dvipdfm——\"/usr/local/texlive/$year/bin/x86_64-linux/dvipdfm\" %.dvi"
-        echo "[9] metapost——\"/usr/local/texlive/$year/bin/x86_64-linux/mpost\" --interaction nonstopmode "
-        echo "[10] Asymptote——\"/usr/local/texlive/$year/bin/x86_64-linux/asy\" %.asy"
-        echo "[11] Add to PATH——/usr/local/texlive/$year/bin/x86_64-linux/"
+        if [ ! -f "$texmaker_ini" ]
+        then
+            echo "没有找到${HOME}/.config/xm1/texmaker.ini"
+            echo "打开并关闭一次Texmaker会自动生成此文件"
+            exit
+        else
+            echo "已经找到${HOME}/.config/xm1/texmaker.ini"
+        fi
+        echo "[1]为Texmaker设置Tools\Latex路径"
+        new_Latex="Tools\\\Latex=\"\\\\\"/usr/local/texlive/$year/bin/x86_64-linux/latex\\\\\" -interaction=nonstopmode %.tex\""
         Latex=$(grep -n "Tools\\\Latex=" $texmaker_ini)
         Latex=${Latex%%:*}
         sed -i '/Tools\\Latex=/d' $texmaker_ini
         sed -i "${Latex}i $new_Latex" $texmaker_ini
-
-        # Pdflatex=$(grep -i "Tools\\\Pdflatex=" $texmaker_ini)
-
+        
+        echo "[2]为Texmaker设置Tools\Pdflatex路径"
+        new_Pdflatex="Tools\\\Pdflatex=\"\\\\\"/usr/local/texlive/$year/bin/x86_64-linux/pdflatex\\\\\" -interaction=nonstopmode %.tex\""
+        Pdflatex=$(grep -n "Tools\\\Pdflatex=" $texmaker_ini)
+        Pdflatex=${Pdflatex%%:*}
+        sed -i '/Tools\\Pdflatex=/d' $texmaker_ini
+        sed -i "${Pdflatex}i $new_Pdflatex" $texmaker_ini
+        
+        echo "[3]为Texmaker设置Tools\Xelatex路径"
+        new_Xelatex="Tools\\\Xelatex=\"\\\\\"/usr/local/texlive/$year/bin/x86_64-linux/xelatex\\\\\" -interaction=nonstopmode %.tex\""
+        Xelatex=$(grep -n "Tools\\\Xelatex=" $texmaker_ini)
+        Xelatex=${Xelatex%%:*}
+        sed -i '/Tools\\Xelatex=/d' $texmaker_ini
+        sed -i "${Xelatex}i $new_Xelatex" $texmaker_ini
+        
+        echo "[4]为Texmaker设置Tools\Lualatex路径"
+        new_Lualatex="Tools\\\Lualatex=\"\\\\\"/usr/local/texlive/$year/bin/x86_64-linux/lualatex\\\\\" -interaction=nonstopmode %.tex\""
+        Lualatex=$(grep -n "Tools\\\Lualatex=" $texmaker_ini)
+        Lualatex=${Lualatex%%:*}
+        sed -i '/Tools\\Lualatex=/d' $texmaker_ini
+        sed -i "${Lualatex}i $new_Lualatex" $texmaker_ini
+        
+        echo "[5]为Texmaker设置Tools\Latexmk路径"
+        new_Latexmk="Tools\\\Latexmk=\"\\\\\"/usr/local/texlive/$year/bin/x86_64-linux/latexmk\\\\\" -e \\\\\"\\\$pdflatex=q/pdflatex -interaction=nonstopmode/\\\\\" -pdf %.tex\""
+        Latexmk=$(grep -n "Tools\\\Latexmk=" $texmaker_ini)
+        Latexmk=${Latexmk%%:*}
+        sed -i '/Tools\\Latexmk=/d' $texmaker_ini
+        sed -i "${Latexmk}i $new_Latexmk" $texmaker_ini
+        
+        echo "[6]为Texmaker设置Tools\Bibtex路径"
+        new_Bibtex="Tools\\\Bibtex=\\\\\"/usr/local/texlive/$year/bin/x86_64-linux/bibtex\\\\\" %.aux"
+        Bibtex=$(grep -n "Tools\\\Bibtex=" $texmaker_ini)
+        Bibtex=${Bibtex%%:*}
+        sed -i '/Tools\\Bibtex=/d' $texmaker_ini
+        sed -i "${Bibtex}i $new_Bibtex" $texmaker_ini
+        
+        echo "[7]为Texmaker设置Tools\Makeindex路径"
+        new_Makeindex="Tools\\\Makeindex=\\\\\"/usr/local/texlive/$year/bin/x86_64-linux/makeindex\\\\\" %.idx"
+        Makeindex=$(grep -n "Tools\\\Makeindex=" $texmaker_ini)
+        Makeindex=${Makeindex%%:*}
+        sed -i '/Tools\\Makeindex=/d' $texmaker_ini
+        sed -i "${Makeindex}i $new_Makeindex" $texmaker_ini
+        
+        echo "[8]为Texmaker设置Tools\Dvips路径"
+        new_Dvips="Tools\\\Dvips=\\\\\"/usr/local/texlive/$year/bin/x86_64-linux/dvips\\\\\" -o %.ps %.dvi"
+        Dvips=$(grep -n "Tools\\\Dvips=" $texmaker_ini)
+        Dvips=${Dvips%%:*}
+        sed -i '/Tools\\Dvips=/d' $texmaker_ini
+        sed -i "${Dvips}i $new_Dvips" $texmaker_ini
+        
+        echo "[9]为Texmaker设置Tools\Dvipdf路径"
+        new_Dvipdf="Tools\\\Dvipdf=\\\\\"/usr/local/texlive/$year/bin/x86_64-linux/dvipdfm\\\\\" %.dvi"
+        Dvipdf=$(grep -n "Tools\\\Dvipdf=" $texmaker_ini)
+        Dvipdf=${Dvipdf%%:*}
+        sed -i '/Tools\\Dvipdf=/d' $texmaker_ini
+        sed -i "${Dvipdf}i $new_Dvipdf" $texmaker_ini
+        
+        echo "[10]为Texmaker设置Tools\Metapost路径"
+        new_Metapost="Tools\\\Metapost=\"\\\\\"/usr/local/texlive/$year/bin/x86_64-linux/mpost\\\\\" --interaction nonstopmode\""
+        Metapost=$(grep -n "Tools\\\Metapost=" $texmaker_ini)
+        Metapost=${Metapost%%:*}
+        sed -i '/Tools\\Metapost=/d' $texmaker_ini
+        sed -i "${Metapost}i $new_Metapost" $texmaker_ini
+        
+        echo "[11]为Texmaker设置Tools\Asymptote路径"
+        new_Asymptote="Tools\\\Asymptote=\\\\\"/usr/local/texlive/$year/bin/x86_64-linux/asy\\\\\" %.asy"
+        Asymptote=$(grep -n "Tools\\\Asymptote=" $texmaker_ini)
+        Asymptote=${Asymptote%%:*}
+        sed -i '/Tools\\Asymptote=/d' $texmaker_ini
+        sed -i "${Asymptote}i $new_Asymptote" $texmaker_ini
+        
+        echo "[12]为Texmaker设置环境变量PATH"
+        new_ExtraPath="Tools\\\ExtraPath=/usr/local/texlive/$year/bin/x86_64-linux/"
+        ExtraPath=$(grep -n "Tools\\\ExtraPath=" $texmaker_ini)
+        ExtraPath=${ExtraPath%%:*}
+        sed -i '/Tools\\ExtraPath=/d' $texmaker_ini
+        sed -i "${ExtraPath}i $new_ExtraPath" $texmaker_ini
+        
     elif [ $1 == "0" ]
     then
         error=0

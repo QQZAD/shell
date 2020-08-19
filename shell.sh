@@ -149,6 +149,7 @@ echo "echo \$find"
 echo
 echo "将\${HOME}/test.txt中含有key\no的一行删除"
 echo "sed -i '/key\\\no/d' \${HOME}/test.txt"
+echo "sed -i \"/key\\\\\no/d\" \${HOME}/test.txt"
 echo
 echo "在\${HOME}/test.txt第2行后面插入key\no"
 echo "sed -i '3i key\\\no' \${HOME}/test.txt"
