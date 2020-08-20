@@ -1,17 +1,50 @@
 #!/bin/bash
-option=1
-# 1 to install, 0 to uninstall
-if [ -n "$1" ]; then
-    if [ $1 -eq "1" ]
-    then
-        option=1
-    else
-        option=0
-    fi
-fi
+# ./cuda.sh     安装cuda
+# ./cuda.sh 1	生成一个简单的cuda项目
+# ./cuda.sh 0	卸载cuda
+error=1
 
-if [ $option -eq 1 ]
+cuda_ver=11.0 #注意153行也要对应修改
+
+if [ -n "$1" ] && [ ! -n "$2" ]
 then
+    if [ $1 == "1" ]
+    then
+        error=0
+        echo "通过cd /usr/local/cuda/samples;ls查找CUDA的示例程序"
+        cp -r /usr/local/cuda/samples/0_Simple/template ${HOME}/
+        sed -i "s#INCLUDES  :=#INCLUDES  := -I /usr/local/cuda/samples/common/inc#g" ${HOME}/template/Makefile
+        sed -i '/mkdir/d' ${HOME}/template/Makefile
+        sed -i '/rm -rf/d' ${HOME}/template/Makefile
+        sed -i '/cp $@/d' ${HOME}/template/Makefile
+        sudo rm -rf ${HOME}/template/doc
+        sudo rm -rf ${HOME}/template/NsightEclipse.xml
+        echo "已经在主目录下生成一个简单的CUDA项目template"
+    elif [ $1 == "0" ]
+    then
+        error=0
+        read -p "是否继续卸载CUDA Toolkit $cuda_ver ？(Y-继续/n-结束)" conti
+        if [ $conti == "y" ] || [ $conti == "Y" ]
+        then
+            echo "卸载cuda..."
+        elif [ $conti == "n" ] || [ $conti == "N" ]
+        then
+            echo "取消卸载"
+            exit
+        else
+            echo "输入错误，取消卸载"
+            exit
+        fi
+        sudo apt-get --purge remove cuda -y
+        sudo apt-get --purge remove "*cublas*" "cuda*" -y
+        sudo apt-get autoremove -y
+        sudo rm -rf /usr/local/cuda-$cuda_ver
+        echo
+        echo "通过运行sudo apt-get --purge remove \"*nvidia*\" -y命令可以卸载NVIDIA驱动程序"
+    fi
+elif [ ! -n "$1" ]
+then
+    error=0
     release_num=$(lsb_release -r --short)
     case "$release_num" in
         "18.04")
@@ -31,25 +64,24 @@ then
             exit
         ;;
     esac
-
+    
     # https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html
     # https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1804&target_type=deblocal
     # https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1604&target_type=deblocal
-    cuda_ver=11.0 #注意124行也要对应修改
     pin_url=https://developer.download.nvidia.com/compute/cuda/repos/$ubuntu/x86_64/cuda-$ubuntu.pin
     deb=cuda-repo-$ubuntu-11-0-local_11.0.3-450.51.06-1_amd64.deb
     deb_url=https://developer.download.nvidia.com/compute/cuda/11.0.3/local_installers/$deb
     repo_ver=cuda-repo-$ubuntu-11-0-local
-
+    
     # https://developer.nvidia.com/nsight-compute
-    NsightCompute_ver=2020.1 #注意124行也要对应修改
+    NsightCompute_ver=2020.1 #注意153行也要对应修改
     nsight_compute=nsight-compute-linux-${NsightCompute_ver}.2.4-28820667.run
-
+    
     # 本地必须存在$nsight_compute
     if [ ! -f "$nsight_compute" ]
     then
         echo "没有找到本地$nsight_compute"
-		echo "访问https://developer.nvidia.com/nsight-compute"
+        echo "访问https://developer.nvidia.com/nsight-compute"
         echo "获取$nsight_compute并将其放在shell下"
         echo "结束安装"
         exit
@@ -136,12 +168,11 @@ then
         cat /usr/local/cuda/version.txt
         echo "通过reboot命令重启机器"
     fi
-else
-    sudo echo "卸载cuda..."
-    sudo apt-get --purge remove cuda -y
-    sudo apt-get --purge remove "*cublas*" "cuda*" -y
-    sudo apt-get autoremove -y
-    sudo rm -rf /usr/local/cuda-$cuda_ver
-    echo
-    echo "通过运行sudo apt-get --purge remove \"*nvidia*\" -y命令可以卸载NVIDIA驱动程序"
+fi
+if [ $error == "1" ]
+then
+    echo "./cuda.sh     安装cuda"
+    echo "./cuda.sh 1   生成一个简单的cuda项目"
+    echo "./cuda.sh 0   卸载cuda"
+    exit
 fi
