@@ -4,7 +4,7 @@
 # ./cuda.sh 0	卸载cuda
 error=1
 
-cuda_ver=11.0 #注意156行也要对应修改
+cuda_ver=11.0 #注意188行也要对应修改
 
 if [ -n "$1" ] && [ ! -n "$2" ]
 then
@@ -13,12 +13,44 @@ then
         error=0
         echo "通过cd /usr/local/cuda/samples;ls查找CUDA的示例程序"
         cp -r /usr/local/cuda/samples/0_Simple/template ${HOME}/
-        sed -i "s#INCLUDES  :=#INCLUDES  := -I /usr/local/cuda/samples/common/inc#g" ${HOME}/template/Makefile
+        sed -i "s#INCLUDES  := -I../../common/inc#INCLUDES  := -I /usr/local/cuda/include -I /usr/local/cuda/samples/common/inc#g" ${HOME}/template/Makefile
         sed -i '/mkdir/d' ${HOME}/template/Makefile
         sed -i '/rm -rf/d' ${HOME}/template/Makefile
         sed -i '/cp $@/d' ${HOME}/template/Makefile
         sudo rm -rf ${HOME}/template/doc
+        sudo rm -rf ${HOME}/template/readme.txt
         sudo rm -rf ${HOME}/template/NsightEclipse.xml
+        mkdir ${HOME}/template/.vscode
+        touch ${HOME}/template/.vscode/settings.json
+cat > ${HOME}/template/.vscode/settings.json << END_TEXT
+{
+    "files.associations": {
+        "*.cu": "cpp",
+    },
+}
+END_TEXT
+        touch ${HOME}/template/.vscode/c_cpp_properties.json
+cat > ${HOME}/template/.vscode/c_cpp_properties.json << END_TEXT
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "\${workspaceFolder}/**",
+                "/usr/include",
+                "/usr/include/x86_64-linux-gnu/sys",
+                "/usr/local/cuda/include",
+                "/usr/local/cuda/samples/common/inc"
+            ],
+            "intelliSenseMode": "gcc-x64",
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "gnu11",
+            "cppStandard": "gnu++14"
+        }
+    ],
+    "version": 4
+}
+END_TEXT
         echo "已经在主目录下生成一个简单的CUDA项目template"
     elif [ $1 == "0" ]
     then
@@ -74,7 +106,7 @@ then
     repo_ver=cuda-repo-$ubuntu-11-0-local
     
     # https://developer.nvidia.com/nsight-compute
-    NsightCompute_ver=2020.1 #注意156行也要对应修改
+    NsightCompute_ver=2020.1 #注意188行也要对应修改
     nsight_compute=nsight-compute-linux-${NsightCompute_ver}.2.4-28820667.run
     
     # 本地必须存在$nsight_compute
