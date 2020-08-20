@@ -41,6 +41,7 @@ else
 	fi
 	sudo cp -r vscode/settings.json ${HOME}/.config/Code/User/settings.json
 	sudo chown ${USER}: -R ${HOME}/.vscode/
+	sudo chown ${USER}: -R ${HOME}/.config/
 	cd $currdir
 	sudo rm -rf vscode/
 	echo
