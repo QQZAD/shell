@@ -14,6 +14,7 @@ then
         echo "通过cd /usr/local/cuda/samples;ls查找CUDA的示例程序"
         cp -r /usr/local/cuda/samples/0_Simple/template ${HOME}/
         sed -i "s#INCLUDES  := -I../../common/inc#INCLUDES  := -I /usr/local/cuda/include -I /usr/local/cuda/samples/common/inc#g" ${HOME}/template/Makefile
+        sed -i "s#SMS ?= 35 37 50 52 60 61 70 75 80#SMS ?= 52 60 61 70 75 80#g" ${HOME}/template/Makefile
         sed -i '/mkdir/d' ${HOME}/template/Makefile
         sed -i '/rm -rf/d' ${HOME}/template/Makefile
         sed -i '/cp $@/d' ${HOME}/template/Makefile
