@@ -129,7 +129,7 @@ cat > ${HOME}/template/.vscode/launch.json << END_TEXT
             "program": "\${workspaceFolder}/template",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "\${fileDirname}",
+            "cwd": "\${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
             "preLaunchTask": "template",
