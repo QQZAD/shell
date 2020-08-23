@@ -14,6 +14,8 @@ then
         echo "通过cd /usr/local/cuda/samples;ls查找CUDA的示例程序"
         cp -r /usr/local/cuda/samples/0_Simple/template ${HOME}/
         sed -i "s#INCLUDES  := -I../../common/inc#INCLUDES  := -I /usr/local/cuda/include -I /usr/local/cuda/samples/common/inc#g" ${HOME}/template/Makefile
+        sed -i "s#LIBRARIES :=#LIBRARIES := -L /usr/local/cuda/lib64 -L /usr/local/cuda/samples/common/lib#g" ${HOME}/template/Makefile
+        sed -i "s#\\\$(EXEC) \\\$(NVCC) \\\$(INCLUDES) \\\$(ALL_CCFLAGS) \\\$(GENCODE_FLAGS) -o \\\$@ -c \\\$<#\\\$(EXEC) \\\$(NVCC) \\\$(INCLUDES) \\\$(ALL_CCFLAGS) \\\$(GENCODE_FLAGS) -o \\\$@ -c \\\$< -dc#g" ${HOME}/template/Makefile
         sed -i "s#SMS ?= 35 37 50 52 60 61 70 75 80#SMS ?= 52 60 61 70 75 80#g" ${HOME}/template/Makefile
         sed -i '/mkdir/d' ${HOME}/template/Makefile
         sed -i '/rm -rf/d' ${HOME}/template/Makefile
@@ -51,6 +53,96 @@ cat > ${HOME}/template/.vscode/c_cpp_properties.json << END_TEXT
         }
     ],
     "version": 4
+}
+END_TEXT
+        touch ${HOME}/template/.vscode/tasks.json
+cat > ${HOME}/template/.vscode/tasks.json << END_TEXT
+{
+    "tasks": [
+        {
+            "label": "template_gpu",
+            "type": "shell",
+            "command": "nvcc",
+            "args": [
+                "-g",
+                "template.cu",
+                "-o",
+                "template.o",
+                "-I",
+                "/usr/local/cuda/include",
+                "-I",
+                "/usr/local/cuda/samples/common/inc",
+                "-L",
+                "/usr/local/cuda/lib64",
+                "-L",
+                "/usr/local/cuda/samples/common/lib",
+                "-dc"
+            ]
+        },
+        {
+            "label": "template_cpu",
+            "type": "shell",
+            "command": "nvcc",
+            "args": [
+                "-g",
+                "template_cpu.cpp",
+                "-o",
+                "template_cpu.o",
+                "-I",
+                "/usr/local/cuda/include",
+                "-I",
+                "/usr/local/cuda/samples/common/inc",
+                "-L",
+                "/usr/local/cuda/lib64",
+                "-L",
+                "/usr/local/cuda/samples/common/lib",
+                "-dc"
+            ]
+        },
+        {
+            "label": "template",
+            "type": "shell",
+            "command": "nvcc",
+            "args": [
+                "-o",
+                "template",
+                "template.o",
+                "template_cpu.o",
+            ],
+            "dependsOn": [
+                "template_gpu",
+                "template_cpu",
+            ]
+        }
+    ]
+}
+END_TEXT
+
+        touch ${HOME}/template/.vscode/launch.json
+cat > ${HOME}/template/.vscode/launch.json << END_TEXT
+{
+    "configurations": [
+        {
+            "name": "template",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "\${workspaceFolder}/template",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "\${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "preLaunchTask": "template",
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
 }
 END_TEXT
         echo "已经在主目录下生成一个简单的CUDA项目template"
