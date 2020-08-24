@@ -99,6 +99,8 @@ cat > ${HOME}/template/.vscode/tasks.json << END_TEXT
                 "-o",
                 "template_cpu.o",
                 "-I",
+                "\${workspaceFolder}",
+                "-I",
                 "/usr/local/cuda/include",
                 "-I",
                 "/usr/local/cuda/samples/common/inc",
