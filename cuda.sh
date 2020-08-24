@@ -4,7 +4,7 @@
 # ./cuda.sh 0	卸载cuda
 error=1
 
-cuda_ver=11.0 #注意189行也要对应修改
+cuda_ver=11.0 #注意296行也要对应修改
 
 if [ -n "$1" ] && [ ! -n "$2" ]
 then
@@ -73,6 +73,8 @@ cat > ${HOME}/template/.vscode/tasks.json << END_TEXT
                 "-o",
                 "template.o",
                 "-I",
+                "\${workspaceFolder}",
+                "-I",
                 "/usr/local/cuda/include",
                 "-I",
                 "/usr/local/cuda/samples/common/inc",
@@ -129,7 +131,7 @@ cat > ${HOME}/template/.vscode/tasks.json << END_TEXT
     ]
 }
 END_TEXT
-
+        
         touch ${HOME}/template/.vscode/launch.json
 cat > ${HOME}/template/.vscode/launch.json << END_TEXT
 {
@@ -212,7 +214,7 @@ then
     repo_ver=cuda-repo-$ubuntu-11-0-local
     
     # https://developer.nvidia.com/nsight-compute
-    NsightCompute_ver=2020.1 #注意189行也要对应修改
+    NsightCompute_ver=2020.1 #注意296行也要对应修改
     nsight_compute=nsight-compute-linux-${NsightCompute_ver}.2.4-28820667.run
     
     # 本地必须存在$nsight_compute
