@@ -16,7 +16,7 @@ then
         sed -i "s#INCLUDES  := -I../../common/inc#INCLUDES  := -I /usr/local/cuda/include -I /usr/local/cuda/samples/common/inc#g" ${HOME}/template/Makefile
         sed -i "s#LIBRARIES :=#LIBRARIES := -L /usr/local/cuda/lib64 -L /usr/local/cuda/samples/common/lib#g" ${HOME}/template/Makefile
         sed -i "s#\\\$(EXEC) \\\$(NVCC) \\\$(INCLUDES) \\\$(ALL_CCFLAGS) \\\$(GENCODE_FLAGS) -o \\\$@ -c \\\$<#\\\$(EXEC) \\\$(NVCC) \\\$(INCLUDES) \\\$(ALL_CCFLAGS) \\\$(GENCODE_FLAGS) -o \\\$@ -c \\\$< -dc#g" ${HOME}/template/Makefile
-        sed -i "s#SMS ?= 35 37 50 52 60 61 70 75 80#SMS ?= 52 60 61 70 75 80#g" ${HOME}/template/Makefile
+        sed -i "s#SMS ?= 35 37 50 52 60 61 70 75 80#SMS ?= 75#g" ${HOME}/template/Makefile
         sed -i '/mkdir/d' ${HOME}/template/Makefile
         sed -i '/rm -rf/d' ${HOME}/template/Makefile
         sed -i '/cp $@/d' ${HOME}/template/Makefile
@@ -64,6 +64,10 @@ cat > ${HOME}/template/.vscode/tasks.json << END_TEXT
             "type": "shell",
             "command": "nvcc",
             "args": [
+                "-gencode",
+                "arch=compute_75,code=sm_75",
+                "-gencode",
+                "arch=compute_75,code=compute_75",
                 "-g",
                 "template.cu",
                 "-o",
@@ -84,6 +88,10 @@ cat > ${HOME}/template/.vscode/tasks.json << END_TEXT
             "type": "shell",
             "command": "nvcc",
             "args": [
+                "-gencode",
+                "arch=compute_75,code=sm_75",
+                "-gencode",
+                "arch=compute_75,code=compute_75",
                 "-g",
                 "template_cpu.cpp",
                 "-o",
@@ -104,6 +112,10 @@ cat > ${HOME}/template/.vscode/tasks.json << END_TEXT
             "type": "shell",
             "command": "nvcc",
             "args": [
+                "-gencode",
+                "arch=compute_75,code=sm_75",
+                "-gencode",
+                "arch=compute_75,code=compute_75",
                 "-o",
                 "template",
                 "template.o",
