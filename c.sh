@@ -12,4 +12,4 @@ echo "    {"
 echo "        mkdir(\"directory_name\", 0700);"
 echo "    }"
 echo "    return 0;"
-echo "}
+echo "}"
