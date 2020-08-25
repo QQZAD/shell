@@ -4,7 +4,7 @@
 # ./cuda.sh 0	卸载cuda
 error=1
 
-cuda_ver=11.0 #注意296行也要对应修改
+cuda_ver=11.0 #注意306行也要对应修改
 
 if [ -n "$1" ] && [ ! -n "$2" ]
 then
@@ -224,7 +224,7 @@ then
     repo_ver=cuda-repo-$ubuntu-11-0-local
     
     # https://developer.nvidia.com/nsight-compute
-    NsightCompute_ver=2020.1 #注意296行也要对应修改
+    NsightCompute_ver=2020.1 #注意306行也要对应修改
     nsight_compute=nsight-compute-linux-${NsightCompute_ver}.2.4-28820667.run
     
     # 本地必须存在$nsight_compute
