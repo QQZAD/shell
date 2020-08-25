@@ -1,0 +1,15 @@
+#!/bin/bash
+echo -e "\e[32m[C教程]\e[0m"
+echo "判断directory_name是否存在,若不存在则创建directory_name"
+echo "#include <sys/types.h>"
+echo "#include <sys/stat.h>"
+echo "#include <unistd.h>"
+echo "int main()"
+echo "{"
+echo "    struct stat st = {0};"
+echo "    if (stat(\"directory_name\", &st) == -1)"
+echo "    {"
+echo "        mkdir(\"directory_name\", 0700);"
+echo "    }"
+echo "    return 0;"
+echo "}
