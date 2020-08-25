@@ -17,6 +17,7 @@ then
         sed -i "s#LIBRARIES :=#LIBRARIES := -L /usr/local/cuda/lib64 -L /usr/local/cuda/samples/common/lib#g" ${HOME}/template/Makefile
         sed -i "s#\\\$(EXEC) \\\$(NVCC) \\\$(INCLUDES) \\\$(ALL_CCFLAGS) \\\$(GENCODE_FLAGS) -o \\\$@ -c \\\$<#\\\$(EXEC) \\\$(NVCC) \\\$(INCLUDES) \\\$(ALL_CCFLAGS) \\\$(GENCODE_FLAGS) -o \\\$@ -c \\\$< -dc#g" ${HOME}/template/Makefile
         sed -i "s#SMS ?= 35 37 50 52 60 61 70 75 80#SMS ?= 75#g" ${HOME}/template/Makefile
+        sed -i "s#CUDA_PATH ?= /usr/local/cuda-11.0#CUDA_PATH ?= /usr/local/cuda#g" ${HOME}/template/Makefile
         sed -i "244i dbg := 1" ${HOME}/template/Makefile
         sed -i '/mkdir/d' ${HOME}/template/Makefile
         sed -i '/rm -rf/d' ${HOME}/template/Makefile
