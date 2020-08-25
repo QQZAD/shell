@@ -17,6 +17,7 @@ then
         sed -i "s#LIBRARIES :=#LIBRARIES := -L /usr/local/cuda/lib64 -L /usr/local/cuda/samples/common/lib#g" ${HOME}/template/Makefile
         sed -i "s#\\\$(EXEC) \\\$(NVCC) \\\$(INCLUDES) \\\$(ALL_CCFLAGS) \\\$(GENCODE_FLAGS) -o \\\$@ -c \\\$<#\\\$(EXEC) \\\$(NVCC) \\\$(INCLUDES) \\\$(ALL_CCFLAGS) \\\$(GENCODE_FLAGS) -o \\\$@ -c \\\$< -dc#g" ${HOME}/template/Makefile
         sed -i "s#SMS ?= 35 37 50 52 60 61 70 75 80#SMS ?= 75#g" ${HOME}/template/Makefile
+        sed -i "244i dbg := 1" ${HOME}/template/Makefile
         sed -i '/mkdir/d' ${HOME}/template/Makefile
         sed -i '/rm -rf/d' ${HOME}/template/Makefile
         sed -i '/cp $@/d' ${HOME}/template/Makefile
@@ -58,30 +59,30 @@ END_TEXT
         touch ${HOME}/template/.vscode/tasks.json
 cat > ${HOME}/template/.vscode/tasks.json << END_TEXT
 {
+    "version": "2.0.0",
     "tasks": [
         {
             "label": "template_gpu",
             "type": "shell",
             "command": "nvcc",
             "args": [
-                "-gencode",
-                "arch=compute_75,code=sm_75",
-                "-gencode",
-                "arch=compute_75,code=compute_75",
-                "-g",
-                "template.cu",
-                "-o",
-                "template.o",
+                "-ccbin",
+                "g++",
                 "-I",
                 "\${workspaceFolder}",
                 "-I",
                 "/usr/local/cuda/include",
                 "-I",
                 "/usr/local/cuda/samples/common/inc",
-                "-L",
-                "/usr/local/cuda/lib64",
-                "-L",
-                "/usr/local/cuda/samples/common/lib",
+                "-m64",
+                "-gencode",
+                "arch=compute_75,code=sm_75",
+                "-gencode",
+                "arch=compute_75,code=compute_75",
+                "-o",
+                "template.o",
+                "-c",
+                "template.cu",
                 "-dc"
             ]
         },
@@ -90,24 +91,23 @@ cat > ${HOME}/template/.vscode/tasks.json << END_TEXT
             "type": "shell",
             "command": "nvcc",
             "args": [
-                "-gencode",
-                "arch=compute_75,code=sm_75",
-                "-gencode",
-                "arch=compute_75,code=compute_75",
-                "-g",
-                "template_cpu.cpp",
-                "-o",
-                "template_cpu.o",
+                "-ccbin",
+                "g++",
                 "-I",
                 "\${workspaceFolder}",
                 "-I",
                 "/usr/local/cuda/include",
                 "-I",
                 "/usr/local/cuda/samples/common/inc",
-                "-L",
-                "/usr/local/cuda/lib64",
-                "-L",
-                "/usr/local/cuda/samples/common/lib",
+                "-m64",
+                "-gencode",
+                "arch=compute_75,code=sm_75",
+                "-gencode",
+                "arch=compute_75,code=compute_75",
+                "-o",
+                "template_cpu.o",
+                "-c",
+                "template_cpu.cpp",
                 "-dc"
             ]
         },
@@ -116,6 +116,9 @@ cat > ${HOME}/template/.vscode/tasks.json << END_TEXT
             "type": "shell",
             "command": "nvcc",
             "args": [
+                "-ccbin",
+                "g++",
+                "-m64",
                 "-gencode",
                 "arch=compute_75,code=sm_75",
                 "-gencode",
@@ -124,6 +127,10 @@ cat > ${HOME}/template/.vscode/tasks.json << END_TEXT
                 "template",
                 "template.o",
                 "template_cpu.o",
+                "-L",
+                "/usr/local/cuda/lib64",
+                "-L",
+                "/usr/local/cuda/samples/common/lib"
             ],
             "dependsOn": [
                 "template_gpu",
