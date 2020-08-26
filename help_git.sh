@@ -21,6 +21,9 @@ echo
 echo "删除分支new"
 echo "git branch -d new"
 echo
+echo "放弃所有未提交的修改"
+echo "git checkout ."
+echo
 echo "切换到主分支"
 echo "git checkout master"
 echo
