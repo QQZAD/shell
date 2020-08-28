@@ -13,4 +13,5 @@ cd $name
 ./bootstrap.sh
 sudo ./b2 install
 sudo ldconfig
+cd ..
 sudo rm -rf $name
