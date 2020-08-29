@@ -31,7 +31,10 @@ then
         sudo touch /etc/docker/daemon.json
     fi
     
-    sudo sh -c 'echo "{\"registry-mirrors\": [\"http://hub-mirror.c.163.com\"]}"> /etc/docker/daemon.json'
+    # sudo gedit /etc/docker/daemon.json
+    # 中国科技大学：https://docker.mirrors.ustc.edu.cn
+    # 阿里云：https://pee6w651.mirror.aliyuncs.com
+    sudo sh -c 'echo "{\"registry-mirrors\": [\"https://docker.mirrors.ustc.edu.cn\"]}"> /etc/docker/daemon.json'
     
     systemctl restart docker
     
@@ -109,9 +112,25 @@ then
     echo "sudo docker rmi \$(sudo docker images -q)"
     echo
     echo "从Dockerfile文件创建新镜像"
+    echo "拉取base镜像"
+    echo "sudo docker pull alpine:3.5"
+    echo "cd \${HOME}"
+    echo "git clone https://github.com/docker/labs.git"
+    echo "cd labs/beginner/flask-app"
+    echo
+    echo "gedit Dockerfile"
+    echo "在# Install python and pip前添加如下内容"
+    echo "RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories"
+    echo "RUN mkdir ~/.pip"
+    echo "RUN echo \"[global]\">> ~/.pip/pip.conf"
+    echo "RUN echo \"index-url = http://mirrors.aliyun.com/pypi/simple/\">> ~/.pip/pip.conf"
+    echo "RUN echo \"[install]\">> ~/.pip/pip.conf"
+    echo "RUN echo \"trusted-host = mirrors.aliyun.com\">> ~/.pip/pip.conf"
+    echo
     echo "docker build --help"
-    echo "确保Dockerfile文件在当前目录下"
-    echo "sudo docker build --tag name:tag ."
+    echo "sudo docker build -t qqzad/myapp ."
+    echo "sudo docker run -p 8888:5000 --name myapp qqzad/myapp"
+    echo "访问http://localhost:8888"
 fi
 
 if [ $error == "1" ]
