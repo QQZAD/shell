@@ -41,6 +41,7 @@ then
 elif [ $1 == "1" ]
 then
     error=0
+    echo ""
     echo "启动docker服务"
     echo "sudo service docker start"
     echo
