@@ -41,7 +41,12 @@ then
 elif [ $1 == "1" ]
 then
     error=0
-    echo ""
+    echo "https://docs.docker.com/get-started/"
+    echo "https://docs.docker.com/samples/"
+    echo "git clone https://github.com/docker/labs.git"
+    echo
+    echo "docker --help"
+    echo
     echo "启动docker服务"
     echo "sudo service docker start"
     echo
@@ -103,17 +108,10 @@ then
     echo "删除所有镜像"
     echo "sudo docker rmi \$(sudo docker images -q)"
     echo
-    echo "构建新镜像"
-    echo "gedit app.py"
-    echo "#!/usr/bin/python3"
-    echo "# -*- coding:utf-8 -*-"
-    echo "print(\"appp.py in docker\")"
-    echo "gedit Dockerfile"
-    echo "FROM ubuntu:18.04"
-    echo "COPY . /app"
-    echo "RUN make /app"
-    echo "CMD python /app/app.py"
-    echo "sudo docker build -t ubuntu:18.04 ."
+    echo "从Dockerfile文件创建新镜像"
+    echo "docker build --help"
+    echo "确保Dockerfile文件在当前目录下"
+    echo "sudo docker build --tag name:tag ."
 fi
 
 if [ $error == "1" ]
