@@ -73,7 +73,7 @@ then
     echo "查找镜像httpd"
     echo "sudo docker search httpd"
     echo
-    echo "从镜像hello-world创建名字为my的容器"
+    echo "从镜像hello-world创建名字为my的容器并进入容器"
     echo "sudo docker run --name my hello-world"
     echo "-i表示交互式操作 -t表示终端 -d表示后台启动"
     echo "sudo docker run --name my -itd hello-world"
@@ -111,7 +111,7 @@ then
     echo "删除所有镜像"
     echo "sudo docker rmi \$(sudo docker images -q)"
     echo
-    echo "从Dockerfile文件创建新镜像"
+    echo "使用Dockerfile文件创建新镜像"
     echo "拉取base镜像"
     echo "sudo docker pull alpine:3.5"
     echo "cd \${HOME}"
@@ -131,6 +131,9 @@ then
     echo "sudo docker build -t qqzad/myapp ."
     echo "sudo docker run -p 8888:5000 --name myapp qqzad/myapp"
     echo "访问http://localhost:8888"
+    echo
+    echo "使用容器创建新镜像"
+    echo "sudo docker commit [CONTAINER ID]/[NAMES] qqzad/newapp"
 fi
 
 if [ $error == "1" ]
