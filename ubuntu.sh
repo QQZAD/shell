@@ -350,4 +350,7 @@ echo
 echo "安装新的动态链接库后"
 echo "sudo ldconfig"
 echo
+echo "查看内核模块"
+echo "lsmod"
+echo
 echo "搜索(S)-查找(F)..."
