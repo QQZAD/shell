@@ -191,7 +191,7 @@ echo "查看GPU信息"
 echo "echo \$(lspci|grep -i vga)"
 echo
 echo "查看网卡型号"
-echo "lspci|grep \"Ethernet controller\""
+echo "lspci|grep -E \"Ethernet controller|Network controller\""
 echo
 echo "查看USB设备"
 echo "lsusb"
