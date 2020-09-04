@@ -89,6 +89,9 @@ echo
 echo "杀死chrome的所有进程"
 echo "killall chrome"
 echo
+echo "杀死进程"
+echo "sudo kill -9 PID"
+echo
 echo "为文件添加/取消可执行权限"
 echo "chmod +/-x 'file name'"
 echo
