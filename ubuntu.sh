@@ -353,4 +353,12 @@ echo
 echo "查看内核模块"
 echo "lsmod"
 echo
+echo "关闭网卡"
+echo "sudo ifconfig wlp2s0 down"
+echo "sudo dhclient -r wlp2s0"
+echo
+echo "打开网卡"
+echo "sudo ifconfig wlp2s0 up"
+echo "sudo dhclient wlp2s0"
+echo
 echo "搜索(S)-查找(F)..."
