@@ -34,12 +34,12 @@ then
 			IFS=":"
 			inets=(${inets_[1]})
 			IFS="$OLD_IFS"
-			if [ ${inets[0]} == "地址" ]
-			then
-				server_IP=${inets[1]}
-			else
-				server_IP=${inets[0]}
-			fi
+			# if [ ${inets[0]} == "地址" ]
+			# then
+			# 	server_IP=${inets[1]}
+			# else
+			# 	server_IP=${inets[0]}
+			# fi
 			echo "服务器端的IPv4地址："
 			echo $server_IP	
 		elif [ $2 == "0" ]
