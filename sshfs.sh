@@ -7,7 +7,7 @@
 server_NIC=wlp2s0 #服务器网卡名
 server_user=zad #服务器用户名
 dir=share #共享目录名
-server_IP=0 #自动获取服务器IPv4地址
+server_IP=0 #服务器IPv4地址
 error=1
 if [ -n "$1" ] && [ -n "$2" ]
 then
@@ -45,6 +45,7 @@ then
             server_IP=${inets[$i]}
             echo "服务器端的IPv4地址："
             echo $server_IP
+            sudo echo -e "\e[31m[4]在sshfs.sh中正确设置服务器IPv4地址\e[0m"
         elif [ $2 == "0" ]
         then
             error=0
