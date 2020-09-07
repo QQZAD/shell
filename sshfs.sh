@@ -4,8 +4,8 @@
 #./sshfs.sh s 0	服务器端停止
 #./sshfs.sh c 1	作为客户端启动
 #./sshfs.sh c 0	客户端停止
-server_user=pi #服务器用户名
-server_IP=192.168.0.103 #服务器IPv4地址
+server_user=zad #服务器用户名
+server_IP=172.17.0.1 #服务器IPv4地址
 dir=share #共享目录
 error=1
 if [ -n "$1" ] && [ -n "$2" ]
