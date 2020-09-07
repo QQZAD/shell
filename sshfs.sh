@@ -4,10 +4,10 @@
 #./sshfs.sh s 0	服务器端停止
 #./sshfs.sh c 1	作为客户端启动
 #./sshfs.sh c 0	客户端停止
-server_NIC=wlp2s0 #服务器网卡名
-server_user=zad #服务器用户名
+server_NIC=enp1s0 #服务器网卡名
+server_user=cooper #服务器用户名
 dir=share #共享目录名
-server_IP=172.27.6.248 #服务器IPv4地址
+server_IP=172.27.65.202 #服务器IPv4地址
 error=1
 if [ -n "$1" ] && [ -n "$2" ]
 then
