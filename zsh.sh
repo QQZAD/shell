@@ -1,5 +1,4 @@
 #!/bin/bash
-# 1 to install, 0 to uninstall
 # https://ohmyz.sh/#install
 if [ -n "$1" ]
 then
