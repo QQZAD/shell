@@ -40,7 +40,7 @@ else
         echo "在shell/中没有找到powerline-fonts.zip"
         exit
     fi
-    read -p "安装完成后重启，之后运行./zsh.sh 1"
+    read -p "安装完成后手动重启，之后运行./zsh.sh 1"
     unzip powerline-fonts.zip
     cd powerline-fonts
     sudo ./install.sh
@@ -50,5 +50,4 @@ else
     zsh --version
     # https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
     ./install.sh
-    sudo reboot
 fi
