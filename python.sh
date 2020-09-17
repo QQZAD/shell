@@ -1,9 +1,5 @@
 #!/bin/bash
-sudo apt-get install python -y
-sudo apt-get install python-pip -y
-pip install --upgrade pip -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
-sudo apt-get install python3 -y
-sudo apt-get install python3-pip -y
+sudo apt-get install python3 python3-dev python3-pip -y
 pip3 install --upgrade pip -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
 pip3 install numpy -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
 pip3 install matplotlib -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
