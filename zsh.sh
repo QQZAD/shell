@@ -25,9 +25,13 @@ then
         # zsh: /usr/share/zsh
         sudo apt-get remove --purge zsh fonts-powerline zsh-theme-powerlevel9k zsh-syntax-highlighting -y
         sudo apt-get autoremove
-        chmod +x ${HOME}/.oh-my-zsh/tools/uninstall.sh
-        ${HOME}/.oh-my-zsh/tools/uninstall.sh
+        if [ -d "${HOME}/.oh-my-zsh" ]
+        then
+            chmod +x ${HOME}/.oh-my-zsh/tools/uninstall.sh
+            ${HOME}/.oh-my-zsh/tools/uninstall.sh
+        fi
         rm -rf ${HOME}/.oh-my-zsh
+        sudo rm -rf /etc/zsh
     fi
 else
     sudo echo "安装zsh..."
