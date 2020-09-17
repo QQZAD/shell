@@ -16,8 +16,9 @@ then
         then
             echo "source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
         fi
-        echo "编辑-首选项-文本-[打勾]自定义字体-Meslo LG S DZ for Powerline Regular-11"
-        echo "编辑-首选项-颜色-[去勾]使用系统主题的颜色-内置方案-深色的Solarized"
+        echo "1.编辑-首选项-文本-[打勾]自定义字体-Meslo LG S DZ for Powerline Regular-11"
+        echo "2.编辑-首选项-颜色-[去勾]使用系统主题的颜色-内置方案-深色的Solarized"
+        echo "3.重新打开终端"
     else
         sudo echo "卸载zsh..."
         read -p "按回车键继续..."
