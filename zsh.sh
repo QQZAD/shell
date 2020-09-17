@@ -23,6 +23,11 @@ then
         read -p "按回车键继续..."
         # whereis zsh
         # zsh: /usr/share/zsh
+        if [ -d "${HOME}/.oh-my-zsh" ]
+        then
+            chmod +x ${HOME}/.oh-my-zsh/tools/uninstall.sh
+            ${HOME}/.oh-my-zsh/tools/uninstall.sh
+        fi
         sudo apt-get remove --purge zsh fonts-powerline zsh-theme-powerlevel9k zsh-syntax-highlighting -y
         sudo apt-get autoremove
         rm -rf ${HOME}/.oh-my-zsh
