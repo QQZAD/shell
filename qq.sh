@@ -14,11 +14,11 @@ if [ $option -eq 1 ]
 then
     sudo echo "安装qq..."
     sudo apt install libgtk2.0-0
-    name=linuxqq_2.0.0-b2-1082_amd64.deb
+    name=linuxqq_2.0.0-b2-1084_amd64.deb
     if [ ! -f "./$name" ]
     then
         echo "正在从网络获取$name"
-        wget --no-check-certificate "http://111.47.224.156/dlied1.qq.com/qqweb/LinuxQQ_1/linuxqq_2.0.0-b2-1082_amd64.deb?mkey=5f4927826f3ccafc&f=d7a7&cip=111.60.236.9&proto=http&access_type=$header_ApolloNet" -O $name
+        wget --no-check-certificate "http://118.212.231.40/dlied1.qq.com/qqweb/LinuxQQ/linuxqq_2.0.0-b2-1084_amd64.deb?mkey=5f64a543b75fcab1&f=8507&cip=183.95.236.68&proto=http&access_type=$header_ApolloNet" -O $name
     else
         echo "已经获取本地$name"
     fi
