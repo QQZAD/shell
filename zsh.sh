@@ -42,6 +42,7 @@ else
         exit
     fi
     read -p "安装完成后手动重启，之后运行./zsh.sh 1"
+    # git clone https://github.com/powerline/fonts.git
     unzip powerline-fonts.zip
     cd powerline-fonts
     sudo ./install.sh
