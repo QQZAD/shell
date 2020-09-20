@@ -50,6 +50,7 @@ else
     rm -rf powerline-fonts
     sudo apt-get install zsh fonts-powerline zsh-theme-powerlevel9k zsh-syntax-highlighting -y
     zsh --version
+    sudo fc-cache -fv
     # https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
     ./install.sh
 fi
