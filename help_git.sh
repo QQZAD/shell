@@ -54,3 +54,5 @@ echo
 echo "在cmake中cmake_modules.cmake文件一般用于定义独立的模块或函数，在CMakeLists.txt文件中可以通过include(cmake_modules.cmake文件完整路径)命令调用其中的模块或函数，\${CMAKE_CURRENT_SOURCE_DIR}表示当前正在执行的CMakeLists.txt所在的完整路径，cmake .命令用于编译当前目录，往往会生成很多Makefile。"
 echo
 echo "make -j后面的参数用于并行编译，指的是编译时逻辑任务线程的数量，对于一些大型的项目并行编译不仅取决于CPU的性能，更取决于内存的大小。"
+echo
+echo "Ubuntu系统中移动硬盘出现文档被锁定的问题，解决方案：Ctrl+H 删除该目录下对应的隐藏文件"
