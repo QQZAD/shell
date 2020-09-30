@@ -13,4 +13,6 @@ echo "make -j后面的参数用于并行编译，指的是编译时逻辑任务�
 echo
 echo "Ubuntu系统中移动硬盘出现文档被锁定的问题，解决方案：Ctrl+H 删除该目录下对应的隐藏文件"
 echo
-echo "Ubuntu系统某些软件（如计算器）可能会出现方块字的现象，如果系统中存在对应的字体这一般是由于软件和字体所在目录的文件权限存在问题"
+echo "Ubuntu系统某些软件（如计算器）可能会出现方块字的现象"
+echo "sudo chmod -R 755 /usr/share/fonts"
+echo "sudo chmod -R 754 /usr/share/fonts/truetype"
