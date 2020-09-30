@@ -16,3 +16,4 @@ echo
 echo "Ubuntu系统某些软件（如计算器）可能会出现方块字的现象"
 echo "sudo chmod -R 755 /usr/share/fonts"
 echo "sudo chmod -R 754 /usr/share/fonts/truetype"
+echo "sudo fc-cache -fv"
