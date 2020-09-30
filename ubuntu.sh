@@ -74,16 +74,15 @@ echo
 echo "改变文件/文件夹的主人"
 echo "sudo chown \${USER}: -R name"
 echo
-echo "使所有用户对文件test拥有最高权限"
-echo "sudo chmod 777 test"
+echo "使所有用户对文件夹test及其子项拥有最高权限"
+echo "sudo chmod -R 777 test"
 echo "chmod后面的参数分别是所有者权限、组权限、其他权限"
 echo "111表示可读可写可执行，十进制为7"
 echo "110表示可读可写不可执行，十进制为6"
 echo "101表示可读不可写可执行，十进制为5"
 echo "100表示可读不可写不可执行，十进制为4"
-echo
-echo "使所有用户对文件夹test及其子项拥有最高权限"
-echo "sudo chmod -R 777 test"
+echo "查看目录/usr的权限"
+echo "ls -ld /usr"
 echo
 echo "杀死图形进程"
 echo "xkill"
