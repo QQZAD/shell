@@ -81,8 +81,11 @@ echo "111表示可读可写可执行，十进制为7"
 echo "110表示可读可写不可执行，十进制为6"
 echo "101表示可读不可写可执行，十进制为5"
 echo "100表示可读不可写不可执行，十进制为4"
-echo "查看目录/usr的权限"
-echo "ls -ld /usr"
+echo
+echo "ls的用法ls --help"
+echo "-l使用较长格式列出信息，包括权限和所有者信息"
+echo "-a不隐藏任何以. 开始的项目"
+echo "-d仅现实目录本身"
 echo
 echo "杀死图形进程"
 echo "xkill"
