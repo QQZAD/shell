@@ -196,3 +196,7 @@ echo "    let \"i=i+1\""
 echo "done"
 echo "let \"i=i+1\""
 echo "echo \${inets[\$i]}"
+echo
+echo "读取文件第一行的内容"
+echo "line=\$(head -n 1 \"/etc/issue\")"
+echo "echo \$line"
