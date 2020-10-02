@@ -84,10 +84,12 @@ echo "result=\$(grep -c \"string\" ~/filename)"
 echo "echo \$result"
 echo
 echo "遍历数组"
+echo "sudo touch ~/test.txt"
 echo "array=(A B C D E)"
 echo "for i in {0..4}"
 echo "do"
 echo "	echo \${array[i]}"
+echo "	sudo sh -c 'echo \"'\${array[i]}'\"> ~/test.txt'"
 echo "done"
 echo
 echo "循环输入判断"
