@@ -151,25 +151,51 @@ echo
 echo "删除文件夹(注意：通过ls获取文件夹的正确名称)"
 echo "sudo rm -rf ~/'floder name'"
 echo
-echo "tar的参数-v表示显示细节"
+echo "压缩与解压缩(注意：通过ls获取文件(文件夹)的正确名称)"
+echo "zip --help"
+echo "unzip --help"
 echo
-echo "zip的参数-q表示不显示细节"
+echo "*.zip"
+echo "zip -q -r 'floder name.zip' 'floder name'"
+echo "unzip -q 'floder name.zip'"
 echo
-echo "压缩(注意：通过ls获取文件(文件夹)的正确名称)"
-echo "zip -q -r ~/'floder name.zip' 'floder name'"
-echo "tar -zcvf ~/'floder name.tar.gz' 'floder name'"
-echo "tar -zcvf 'floder name.tar' 'floder name'"
+echo "sudo apt-get install p7zip-full -y"
+echo "7z --help"
 echo
-echo "解压缩tar.gz(.tgz)(注意：通过ls获取文件(文件夹)的正确名称)"
-echo "mkdir ~/'floder name'"
-echo "tar -zxvf ~/'file name.tar.gz(.tgz)' -C ~/'floder name'"
+echo "*.7z"
+echo "7z a 'floder name.7z' 'floder name'"
+echo "7z x 'floder name.7z'"
 echo
-echo "解压缩tar.xz(注意：通过ls获取文件(文件夹)的正确名称)"
-echo "xz -d 'file name.tar.xz'"
-echo "tar -xvf 'file name.tar'"
+echo "sudo apt-get install rar unrar -y"
+echo "rar"
+echo "unrar"
 echo
-echo "解压缩tar(注意：通过ls获取文件(文件夹)的正确名称)"
-echo "tar -xvf 'file name.tar'"
+echo "*.rar"
+echo "rar a 'floder name.rar' 'floder name'"
+echo "unrar x 'floder name.rar'"
+echo
+echo "tar --usage"
+echo "tar --help"
+echo
+echo "*.tar"
+echo "tar -zcf 'floder name.tar' 'floder name'"
+echo "tar -xf 'floder name.tar'"
+echo
+echo "*.tar.gz"
+echo "tar -zcf 'floder name.tar.gz' 'floder name'"
+echo "tar -xf 'floder name.tar.gz'"
+echo
+echo "*.tar.tgz"
+echo "tar -zcf 'floder name.tar.tgz' 'floder name'"
+echo "tar -xf 'floder name.tar.tgz'"
+echo
+echo "xz --help"
+echo
+echo "*.tar.xz"
+echo "tar -zcf 'floder name.tar' 'floder name'"
+echo "xz -z 'floder name.tar'"
+echo "xz -d 'floder name.tar.xz'"
+echo "tar -xf 'floder name.tar'"
 echo
 echo "安装新的软件包"
 echo "sudo apt-get install"
