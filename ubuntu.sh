@@ -235,9 +235,6 @@ echo
 echo "查看PCI设备"
 echo "lspci"
 echo
-echo "查看内核加载的模块"
-echo "lsmod"
-echo
 echo "查看当前硬件信息"
 echo "sudo lshw"
 echo
