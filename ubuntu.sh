@@ -7,23 +7,17 @@ echo
 echo "关机"
 echo "shutdown"
 echo
-echo "命令行模式注销"
-echo "logout"
+echo "Ctrl+Alt+F1切换登录界面"
+echo "Ctrl+Alt+F2-F6切换终端界面"
+echo "Ctrl+Alt+F7恢复图形界面"
 echo
+echo "登录图形界面后："
 echo "回到图形登录界面(Ubuntu18)"
 echo "Ctrl+Alt+F1"
-echo
-echo "恢复已登录的图形桌面(Ubuntu18)"
+echo "恢复已登录的图形界面(Ubuntu18)"
 echo "Ctrl+Alt+F2"
-echo
 echo "切换命令行模式(Ubuntu18)"
 echo "Ctrl+Alt+F3-F6"
-echo
-echo "切换命令行模式(Ubuntu16)"
-echo "Ctrl+Alt+F1-F6"
-echo
-echo "切换图形界面模式(Ubuntu16)"
-echo "Ctrl+Alt+F7"
 echo
 echo "查看所有用户信息"
 echo "grep bash /etc/passwd"
