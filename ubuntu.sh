@@ -10,6 +10,8 @@ echo
 echo "Ctrl+Alt+F1切换登录界面"
 echo "Ctrl+Alt+F2-F6切换终端界面"
 echo "Ctrl+Alt+F7恢复图形界面"
+echo "sudo init 3初始化终端界面"
+echo "sudo init 5初始化图形界面"
 echo
 echo "登录图形界面后："
 echo "回到图形登录界面(Ubuntu18)"
