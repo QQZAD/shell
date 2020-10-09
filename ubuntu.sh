@@ -393,6 +393,9 @@ echo
 echo "查看内核模块"
 echo "lsmod"
 echo
+echo "查看所有网络设备"
+echo "ifconfig -a"
+echo
 echo "关闭网卡"
 echo "sudo ifconfig wlp2s0 down"
 echo "sudo dhclient -r wlp2s0"
