@@ -13,14 +13,6 @@ echo "Ctrl+Alt+F7恢复图形界面"
 echo "sudo init 3初始化终端界面"
 echo "sudo init 5初始化图形界面"
 echo
-echo "登录图形界面后："
-echo "回到图形登录界面(Ubuntu18)"
-echo "Ctrl+Alt+F1"
-echo "恢复已登录的图形界面(Ubuntu18)"
-echo "Ctrl+Alt+F2"
-echo "切换命令行模式(Ubuntu18)"
-echo "Ctrl+Alt+F3-F6"
-echo
 echo "查看所有用户信息"
 echo "grep bash /etc/passwd"
 echo
