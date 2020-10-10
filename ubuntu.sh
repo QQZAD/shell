@@ -345,9 +345,6 @@ echo "重启ssh服务"
 echo "service ssh restart"
 echo
 echo "开放防火墙ssh服务端口"
-echo "service ssh status"
-echo
-echo "开放防火墙ssh服务端口"
 echo "sudo ufw allow ssh"
 echo
 echo "删除防火墙ssh服务端口"
