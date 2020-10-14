@@ -233,8 +233,11 @@ echo
 echo "查看磁盘信息"
 echo "sudo fdisk -l"
 echo
-echo "查看硬盘剩余空间"
+echo "查看文件系统使用情况"
 echo "df -h"
+echo
+echo "查看文件系统格式"
+echo "df -T"
 echo
 echo "查看当前的内存使用情况"
 echo "free -m"
