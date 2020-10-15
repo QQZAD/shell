@@ -4,7 +4,7 @@
 # ./cuda.sh 0	卸载cuda
 error=1
 
-cuda_ver=11.0 #注意306行也要对应修改
+cuda_ver=11.1 #注意306行也要对应修改
 
 if [ -n "$1" ] && [ ! -n "$2" ]
 then
@@ -219,13 +219,13 @@ then
     # https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1804&target_type=deblocal
     # https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1604&target_type=deblocal
     pin_url=https://developer.download.nvidia.com/compute/cuda/repos/$ubuntu/x86_64/cuda-$ubuntu.pin
-    deb=cuda-repo-$ubuntu-11-0-local_11.0.3-450.51.06-1_amd64.deb
-    deb_url=https://developer.download.nvidia.com/compute/cuda/11.0.3/local_installers/$deb
-    repo_ver=cuda-repo-$ubuntu-11-0-local
+    deb=cuda-repo-$ubuntu-11-1-local_11.1.0-455.23.05-1_amd64.deb
+    deb_url=https://developer.download.nvidia.com/compute/cuda/11.1.0/local_installers/$deb
+    repo_ver=cuda-repo-$ubuntu-11-1-local
     
     # https://developer.nvidia.com/nsight-compute
-    NsightCompute_ver=2020.1 #注意306行也要对应修改
-    nsight_compute=nsight-compute-linux-${NsightCompute_ver}.2.4-28820667.run
+    NsightCompute_ver=2020.2 #注意306行也要对应修改
+    nsight_compute=nsight-compute-linux-${NsightCompute_ver}.0.18-28964561.run
     
     # 本地必须存在$nsight_compute
     if [ ! -f "$nsight_compute" ]
@@ -303,7 +303,7 @@ then
         echo "正在设置环境变量..."
         if [ $(grep -c "export PATH=/usr/local/cuda-$cuda_ver/bin:/usr/local/cuda-$cuda_ver/NsightCompute-$NsightCompute_ver\${PATH:+:\${PATH}}" /etc/bash.bashrc) -eq 0 ]
         then
-            sudo sh -c 'cuda_ver=11.0;NsightCompute_ver=2020.1;echo "export PATH=/usr/local/cuda-$cuda_ver/bin:/usr/local/cuda-$cuda_ver/NsightCompute-$NsightCompute_ver\${PATH:+:\${PATH}}" >> /etc/bash.bashrc'
+            sudo sh -c 'cuda_ver=11.1;NsightCompute_ver=2020.2;echo "export PATH=/usr/local/cuda-$cuda_ver/bin:/usr/local/cuda-$cuda_ver/NsightCompute-$NsightCompute_ver\${PATH:+:\${PATH}}" >> /etc/bash.bashrc'
         fi
         source /etc/bash.bashrc
         if [ $(grep -c "export PATH=/usr/local/cuda-$cuda_ver/bin:/usr/local/cuda-$cuda_ver/NsightCompute-$NsightCompute_ver\${PATH:+:\${PATH}}" ${HOME}/.bashrc) -eq 0 ]
@@ -314,8 +314,8 @@ then
         echo "已成功安装CUDA Toolkit $cuda_ver"
         sudo chown ${USER}: -R /usr/local/cuda
         sudo chown ${USER}: -R /usr/local/cuda-$cuda_ver
-        echo "cat /usr/local/cuda/version.txt"
-        cat /usr/local/cuda/version.txt
+        echo "nvcc -V"
+        nvcc -V
         echo "通过reboot命令重启机器"
     fi
 fi
