@@ -9,7 +9,7 @@ then
     echo "在shell/中没有找到wincorefonts.zip文件，将不会安装字体"
 else
     sudo chmod -R 755 /usr/share/fonts
-    echo "正在安装Windows系统目录C:\Windows\Fonts中扩展名为.ttf或.TTF的字体"
+    echo "正在安装Windows系统目录C:\Windows\Fonts中的字体"
     sudo apt-get install unzip
     sudo apt-get install fontconfig
     if [ ! -d "wincorefonts/" ]
