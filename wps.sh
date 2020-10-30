@@ -13,8 +13,8 @@ fi
 if [ $option -eq 1 ]
 then
     sudo echo "安装wps..."
-    name=wps-office_11.1.0.9711_amd64.deb
-    address=9711/$name
+    name=wps-office_11.1.0.9719_amd64.deb
+    address=9719/$name
     if [ ! -f "./$name" ]
     then
         echo "正在从网络获取$name"
