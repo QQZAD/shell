@@ -16,10 +16,6 @@ then
 	if [ ! -f "./$name" ]
 	then
 		echo "正在从网络获取$name"
-		echo -e "\e[32m注意：若在下载过程中突然卡住，依次执行以下命令：\e[0m"
-        echo -e "\e[32mCtrl+Z\e[0m"
-        echo -e "\e[32mwget -c https://dl.google.com/linux/direct/$name\e[0m"
-		echo -e "\e[32m./chrome.sh\e[0m"
 		wget --no-check-certificate https://dl.google.com/linux/direct/$name
 	else
 		echo "已经获取本地$name"
