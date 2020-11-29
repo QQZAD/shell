@@ -75,6 +75,9 @@ then
         echo "∩ \cap"
         echo "← \gets"
         echo "→ \to"
+        echo "∧ \land"
+        echo "∨ \lor"
+        echo "¬ \lnot"
         echo
         echo "大运算符"
         echo "在\begin{document}前添加\usepackage{amsmath,amssymb,amsfonts}"
