@@ -93,6 +93,15 @@ then
         echo "x^i_{j,k}=\frac{i}{j \cdot k} \label{equation1}"
         echo "\end{equation}"
         echo
+        echo "分段函数"
+        echo "\begin{equation}"
+        echo "U(x)="
+        echo "\begin{cases}"
+        echo "0& x = 0\\\\"
+        echo "1& x \neq 0"
+        echo "\end{cases}"
+        echo "\end{equation}"
+        echo
         echo "数学模型目标和约束"
         echo "在\begin{document}前添加\usepackage{amsmath,amssymb,amsfonts}"
         echo "\begin{align}"
