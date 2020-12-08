@@ -49,6 +49,8 @@ then
         echo "在\begin{document}前添加\usepackage{amsmath,amssymb,amsfonts}"
         echo "≤ \leq"
         echo "≥ \geq"
+        echo "< \textless"
+        echo "> \textgreater"
         echo "≡ \equiv"
         echo "≠ \not=\neq"
         echo "≃ \simeq"
@@ -85,6 +87,7 @@ then
         echo "∏ \prod_{i=1}^{n}{(x_i+y_i)}"
         echo "∪ \bigcup_{i=1}^{n}{X_i}"
         echo "∩ \bigcap_{i=1}^{n}{X_i}"
+        echo "换行\atop"
         echo
         echo "文字中的公式"
         echo "在\begin{document}前添加\usepackage{amsmath,amssymb,amsfonts}"
@@ -118,6 +121,8 @@ then
         echo "&\quad \sum_{i=1}^{n}{(x_i+y_i)}\leq 1, \forall i \in \mathbb{U} \label{eq:constraint_2}\\\\"
         echo "&\quad \sum_{i=1}^{n}{(x_i+y_i+z_i)}\geq 1, \forall i \in \mathbb{U} \label{eq:constraint_3}."
         echo "\end{align}"
+        echo
+        echo "\max\limits_{i}\{x_j\}"
         echo
         echo "引理"
         echo ".tex文件头部添加一次\newtheorem{lemma}{Lemma}[section]"
