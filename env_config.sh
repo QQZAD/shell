@@ -10,7 +10,6 @@ sudo apt-get -y install htop
 sudo apt-get -y install wireshark
 sudo apt-get -y install openssl
 sudo apt-get -y install libssl-dev
-sudo apt-get -y install amule
 sudo apt-get -y install python
 sudo apt-get -y install python3
 sudo apt-get -y install python-pip
