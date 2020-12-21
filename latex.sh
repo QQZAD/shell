@@ -100,6 +100,7 @@ then
         echo "\begin{equation}"
         echo "x^i_{j,k}=\frac{i}{j \cdot k} \label{equation1}"
         echo "\end{equation}"
+        echo "使用\notag取消公式编号"
         echo
         echo "分段函数"
         echo "\begin{equation}"
