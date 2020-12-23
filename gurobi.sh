@@ -34,4 +34,4 @@ then
 fi
 read -p "手动执行source ${HOME}/$rc后继续"
 sudo ldconfig
-grbgetkey 05e4737e-4029-11eb-9460-0a7c4f30bdbe
+echo "手动执行grbgetkey 05e4737e-4029-11eb-9460-0a7c4f30bdbe激活gurobi"
