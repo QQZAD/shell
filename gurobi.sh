@@ -11,7 +11,15 @@ sudo rm -rf /opt/gurobi$ver/linux64
 sudo mv gurobi$ver /opt/
 cd /opt/gurobi910/linux64
 sudo python3 setup.py install
-rc=.zshrc
+shell=$(env|grep SHELL=)
+echo $shell
+if [ $shell == "SHELL=/usr/bin/zsh" ]
+then
+    rc=.zshrc
+elif [ $shell == "SHELL=/bin/bash" ]
+then
+    rc=.bashrc
+fi
 if [ $(grep -c "export GUROBI_HOME=\"/opt/gurobi$ver/linux64\"" ${HOME}/$rc) -eq 0 ]
 then
     echo "export GUROBI_HOME=\"/opt/gurobi$ver/linux64\"" >> ${HOME}/$rc
