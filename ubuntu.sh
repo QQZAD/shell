@@ -1,6 +1,8 @@
 #!/bin/bash
 echo -e "\e[32m[系统命令]\e[0m"
 echo
+echo "严禁卸载Ubuntu自带的Python或Python3"
+echo
 echo "重启"
 echo "reboot"
 echo
