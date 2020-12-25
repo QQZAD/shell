@@ -34,7 +34,3 @@ then
 fi
 read -p "手动执行source ${HOME}/$rc后继续"
 sudo ldconfig
-echo "手动执行grbgetkey [激活码]"
-echo "激活码列表"
-echo "05e4737e-4029-11eb-9460-0a7c4f30bdbe（已使用）"
-echo "98a13bce-469c-11eb-bffd-0a7c4f30bdbe（已使用）"
