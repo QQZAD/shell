@@ -314,6 +314,8 @@ then
         echo "已成功安装CUDA Toolkit $cuda_ver"
         sudo chown ${USER}: -R /usr/local/cuda
         sudo chown ${USER}: -R /usr/local/cuda-$cuda_ver
+        sudo chmod -R 755 /usr/local/cuda
+        sudo chmod -R 755 /usr/local/cuda-$cuda_ver
         echo "nvcc -V"
         nvcc -V
         echo "通过reboot命令重启机器"

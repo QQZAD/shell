@@ -1,6 +1,6 @@
 #!/bin/bash
-gurobi=gurobi9.1.0_linux64.tar.gz
-ver=910
+gurobi=gurobi9.1.1_linux64.tar.gz
+ver=911
 if [ ! -f $gurobi ]
 then
     echo "在shell/中没有找到$gurobi"
@@ -9,7 +9,7 @@ fi
 tar -xf $gurobi
 sudo rm -rf /opt/gurobi$ver/linux64
 sudo mv gurobi$ver /opt/
-cd /opt/gurobi910/linux64
+cd /opt/gurobi$ver/linux64
 sudo python3 setup.py install
 shell=$(env|grep SHELL=)
 echo $shell
