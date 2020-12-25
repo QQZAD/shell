@@ -1,7 +1,7 @@
 #!/bin/bash
 Cur_Dir=$(pwd)
 ver=8.44
-ver2=10.34
+ver2=10.36
 
 if [ ! -f "./pcre-$ver.tar.gz" ]
 then
