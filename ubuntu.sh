@@ -217,6 +217,9 @@ echo
 echo "查看CPU信息"
 echo "cat /proc/cpuinfo"
 echo
+echo "查看内存信息"
+echo "sudo dmidecode --type memory"
+echo
 echo "查看GPU信息"
 echo "echo \$(lspci|grep -i vga)"
 echo
