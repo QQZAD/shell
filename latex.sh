@@ -81,6 +81,9 @@ then
         echo "∨ \lor"
         echo "¬ \lnot"
         echo
+        echo "字体加粗"
+        echo "\textbf{}"
+        echo
         echo "大运算符"
         echo "在\begin{document}前添加\usepackage{amsmath,amssymb,amsfonts}"
         echo "∑ \sum_{i=1}^{n}{(x_i+y_i)}"
