@@ -84,6 +84,13 @@ then
         echo "字体加粗"
         echo "\textbf{}"
         echo
+        echo "分条论述"
+        echo "\begin{itemize}"
+        echo "\item The first point;"
+        echo "\item The second point;"
+        echo "\item The third point."
+        echo "\end{itemize}"
+        echo
         echo "大运算符"
         echo "在\begin{document}前添加\usepackage{amsmath,amssymb,amsfonts}"
         echo "∑ \sum_{i=1}^{n}{(x_i+y_i)}"
