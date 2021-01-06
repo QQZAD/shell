@@ -243,7 +243,7 @@ then
         echo "\SetKw{Continue}{continue}"
         echo "\begin{function}"
         echo "\label{function_1}"
-        echo "\caption{Runtime(worker\_id)}"
+        echo "\caption{\detokenize{batching_runtime}(worker\_id)}"
         echo "\textit{request\_buffer} $\gets$ requests\_buffers[worker\_id]\\\\"
         echo "\textit{timeslot\_buffer} $\gets$ timeslot\_buffers[worker\_id]\\\\"
         echo "\While{true}{"
