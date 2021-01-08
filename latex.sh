@@ -81,6 +81,15 @@ then
         echo "∨ \lor"
         echo "¬ \lnot"
         echo
+        echo "多行注释"
+        echo "Ctrl+T"
+        echo "取消多行注释"
+        echo "Ctrl+U"
+        echo
+        echo "多行注释"
+        echo "\iffalse"
+        echo "\fi"
+        echo
         echo "字体加粗"
         echo "\textbf{}"
         echo
