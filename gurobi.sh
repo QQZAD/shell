@@ -51,6 +51,13 @@ else
     sudo echo "卸载gurobi$ver..."
     sudo rm -rf /opt/gurobi$ver
     pip3 uninstall gurobipy
+    shell=$(env|grep SHELL=)
+    if [ $shell == "SHELL=/bin/bash" ]
+    then
+        rc=.bashrc
+    else
+        rc=.zshrc
+    fi
     sudo gedit ${HOME}/$rc
     read -p "手动删除${HOME}/$rc中gurobipy的环境变量..."
     sudo ldconfig
