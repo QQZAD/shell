@@ -58,7 +58,7 @@ else
     else
         rc=.zshrc
     fi
+    echo "手动删除${HOME}/$rc中gurobipy的环境变量..."
     sudo gedit ${HOME}/$rc
-    read -p "手动删除${HOME}/$rc中gurobipy的环境变量..."
     sudo ldconfig
 fi
