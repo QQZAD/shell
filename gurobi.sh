@@ -2,7 +2,8 @@
 option=1
 # 1 to install, 0 to uninstall
 ver=911
-gurobi=gurobi9.1.1_linux64.tar.gz
+_ver=9.1.1
+gurobi=gurobi${_ver}_linux64.tar.gz
 if [ -n "$1" ]; then
     if [ $1 -eq "1" ]
     then
@@ -50,7 +51,8 @@ then
 else
     sudo echo "卸载gurobi$ver..."
     sudo rm -rf /opt/gurobi$ver
-    pip3 uninstall gurobipy
+    pip3 show gurobipy
+    read -p "通过cd转到gurobipy的pip目录并运行sudo rm -rf gurobipy  gurobipy-${_ver}.egg-info后继续"
     shell=$(env|grep SHELL=)
     if [ $shell == "SHELL=/bin/bash" ]
     then
