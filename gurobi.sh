@@ -12,6 +12,7 @@ if [ -n "$1" ]; then
         option=0
     fi
 fi
+sudo apt-get install python3 python3-pip -y
 if [ $option -eq 1 ]
 then
     sudo echo "安装gurobi$ver..."
@@ -61,7 +62,7 @@ else
         rc=.zshrc
     fi
     echo "手动删除${HOME}/$rc中gurobipy的环境变量..."
-    sudo gedit ${HOME}/$rc
+    sudo vim ${HOME}/$rc
     read -p "手动执行source ${HOME}/$rc后继续"
     sudo ldconfig
 fi
