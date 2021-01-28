@@ -61,7 +61,7 @@ else
     else
         rc=.zshrc
     fi
-    echo "手动删除${HOME}/$rc中gurobipy的环境变量..."
+    read -p "手动删除${HOME}/$rc中gurobipy的环境变量..."
     sudo vim ${HOME}/$rc
     read -p "手动执行source ${HOME}/$rc后继续"
     sudo ldconfig
