@@ -13,12 +13,12 @@ fi
 if [ $option -eq 1 ]
 then
     sudo echo "安装vscode..."
-    name=code_1.52.1-1608136922_amd64.deb
-    address=ea3859d4ba2f3e577a159bc91e3074c5d85c0523/$name
+    name=code_1.53.2-1613044664_amd64.deb
+    address=622cb03f7e070a9670c94bae1a45d78d7181fbd4/$name
     if [ ! -f "./$name" ]
     then
         echo "正在从网络获取$name"
-        wget --no-check-certificate https://vscode.cdn.azure.cn/stable/$address
+        wget --no-check-certificate https://az764295.vo.msecnd.net/stable/$address
     else
         echo "已经获取本地$name"
     fi
