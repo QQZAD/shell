@@ -49,6 +49,7 @@ then
     fi
     read -p "手动执行source ${HOME}/$rc后继续"
     sudo ldconfig
+    echo "必须在新的终端中使用gurobi！"
 else
     sudo echo "卸载gurobi$ver..."
     sudo rm -rf /opt/gurobi$ver
