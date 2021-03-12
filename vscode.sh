@@ -13,7 +13,7 @@ fi
 if [ $option -eq 1 ]
 then
     sudo echo "安装vscode..."
-    code_1.54.2-1615424848_amd64.deb
+    name=code_1.54.2-1615424848_amd64.deb
     address=fd6f3bce6709b121a895d042d343d71f317d74e7/$name
     if [ ! -f "./$name" ]
     then
