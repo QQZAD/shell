@@ -18,7 +18,6 @@ else
     sudo mv wincorefonts/ /usr/share/fonts/truetype/
     echo "sudo fc-cache -fv"
     sudo fc-cache -fv
-    sudo rm -rf ${HOME}/.cache/matplotlib
     echo "已经成功安装以下字体"
     ls /usr/share/fonts/truetype/wincorefonts/
 fi
