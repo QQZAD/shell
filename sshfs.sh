@@ -7,7 +7,7 @@
 server_NIC=wlp2s0 #服务器网卡名
 server_user=zad #服务器用户名
 dir=share #共享目录名
-server_IP=172.27.10.154 #服务器IPv4地址
+server_IP=172.27.12.96 #服务器IPv4地址
 error=1
 if [ -n "$1" ] && [ -n "$2" ]
 then
