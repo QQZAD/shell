@@ -17,10 +17,10 @@ then
     sudo echo "安装teamviewer..."
     if [ $platform -eq 0 ]
     then
-        name=teamviewer_15.15.5_amd64.deb
+        name=teamviewer_15.16.8_amd64.deb
     elif [ $platform -eq 1 ]
     then
-        name=teamviewer-host_15.15.5_armhf.deb
+        name=teamviewer-host_15.16.8_armhf.deb
     fi
     if [ ! -f "./$name" ]
     then

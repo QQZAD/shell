@@ -34,6 +34,7 @@ then
     else
         sudo chmod +x ${HOME}/Desktop/wps-office-prometheus.desktop
     fi
+    sudo chown ${USER}: -R ${HOME}
     echo
     echo -e "\e[32m如果安装过程出现错误请再次运行./wps.sh 1\e[0m"
 else
