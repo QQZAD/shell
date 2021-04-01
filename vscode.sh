@@ -13,8 +13,8 @@ fi
 if [ $option -eq 1 ]
 then
     sudo echo "安装vscode..."
-    name=code_1.54.3-1615806378_amd64.deb
-    address=2b9aebd5354a3629c3aba0a5f5df49f43d6689f8/$name
+    name=code_1.55.0-1617120720_amd64.deb
+    address=c185983a683d14c396952dd432459097bc7f757f/$name
     if [ ! -f "./$name" ]
     then
         echo "正在从网络获取$name"
