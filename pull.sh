@@ -6,6 +6,11 @@ then
     echo "reuse-code"
     cd reuse-code;git pull;cd ..
 fi
+if [ -d "termux" ]
+then
+    echo "termux"
+    cd termux;git pull;cd ..
+fi
 if [ -d "private_shell" ]
 then
     echo "private_shell"
