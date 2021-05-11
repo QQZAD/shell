@@ -200,3 +200,7 @@ echo
 echo "读取文件第一行的内容"
 echo "line=\$(head -n 1 \"/etc/issue\")"
 echo "echo \$line"
+echo
+echo "显示文件的1到3行的内容"
+echo "sed -n '1,3p' ~/gurobi.lic"
+echo "awk 'NR>=1&&NR<=3' ~/gurobi.lic"

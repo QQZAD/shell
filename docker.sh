@@ -3,46 +3,43 @@
 # https://docs.docker.com/engine/install/ubuntu/
 # https://developer.aliyun.com/mirror/docker-ce/
 error=1
-if [ ! -n "$1" ]
-then
+if [ ! -n "$1" ]; then
     error=0
     sudo apt-get remove docker docker-engine docker.io containerd runc
     # Install using the repository
-    
+
     sudo apt-get update
     sudo apt-get install \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    gnupg-agent \
-    software-properties-common
+        apt-transport-https \
+        ca-certificates \
+        curl \
+        gnupg-agent \
+        software-properties-common
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     sudo apt-key fingerprint 0EBFCD88
     sudo add-apt-repository \
-    "deb [arch=amd64] https://mirrors.aliyun.com/docker-ce/linux/ubuntu/ \
+        "deb [arch=amd64] https://mirrors.aliyun.com/docker-ce/linux/ubuntu/ \
    $(lsb_release -cs) \
     stable"
-    
+
     sudo apt-get update
     sudo apt-get install docker-ce docker-ce-cli containerd.io
-    
-    if [ ! -f "/etc/docker/daemon.json" ]
-    then
+
+    if [ ! -f "/etc/docker/daemon.json" ]; then
         sudo touch /etc/docker/daemon.json
     fi
-    
+
     # sudo gedit /etc/docker/daemon.json
     # 中国科技大学：https://docker.mirrors.ustc.edu.cn
     # 阿里云：https://pee6w651.mirror.aliyuncs.com
     sudo sh -c 'echo "{\"registry-mirrors\": [\"https://docker.mirrors.ustc.edu.cn\"]}"> /etc/docker/daemon.json'
-    
+
     systemctl restart docker
-    
+
     docker -v
     sudo docker run hello-world
-    
-elif [ $1 == "1" ]
-then
+
+elif [ $1 == "1" ]; then
     error=0
     echo "https://docs.docker.com/get-started/"
     echo "https://docs.docker.com/samples/"
@@ -136,8 +133,7 @@ then
     echo "sudo docker commit [CONTAINER ID]/[NAMES] qqzad/newapp"
 fi
 
-if [ $error == "1" ]
-then
+if [ $error == "1" ]; then
     echo "./docker.sh	安装docker"
     echo "./docker.sh 1	docker教程"
     exit

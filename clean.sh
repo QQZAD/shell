@@ -4,8 +4,7 @@ echo "删除软件包缓存..."
 sudo apt-get clean -y
 sudo apt-get autoclean -y
 if [ -n "$1" ]; then
-	if [ $1 -eq "1" ]
-	then
+	if [ $1 -eq "1" ]; then
 		echo "执行sudo apt-get autoremove..."
 		sudo apt-get autoremove
 	fi
@@ -13,8 +12,7 @@ fi
 echo "清空bash历史命令，下次登入有效..."
 history -c
 sudo rm -rf ${HOME}/.bash_history
-if [ -d ${HOME}/.cache/vmware/ ]
-then
+if [ -d ${HOME}/.cache/vmware/ ]; then
 	echo "删除虚拟机和主机间文件拷贝的缓存..."
 	sudo rm -rf ${HOME}/.cache/vmware/
 fi

@@ -397,4 +397,14 @@ echo
 echo "更新字体缓存"
 echo "sudo fc-cache -fv"
 echo
+echo "使用代理的git"
+echo "git config -l"
+echo "gedit ~/.gitconfig"
+echo "git config --global http.proxy http://192.168.42.129:57686"
+echo "git -c http.proxy=http://192.168.42.129:57686 clone https://github.com/qemu/meson.git"
+echo "git -c http.proxy=http://192.168.42.129:57686 pull"
+echo
+echo "使用代理的apt-get"
+echo "sudo apt-get -o Acquire::http::proxy=http://192.168.42.129:57686 update"
+echo
 echo "搜索(S)-查找(F)..."

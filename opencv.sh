@@ -3,82 +3,71 @@ curr=$(pwd)
 option=1
 # 1 to install, 0 to uninstall
 if [ -n "$1" ]; then
-	if [ $1 -eq "1" ]
-	then
-		option=1
-	else
-		option=0
-	fi
+  if [ $1 -eq "1" ]; then
+    option=1
+  else
+    option=0
+  fi
 fi
-if [ $option -eq 1 ]
-then
-	sudo echo "安装OpenCV..."
-	parallel=4
-	echo "并行编译可以加快编译的速度，逻辑任务线程数量默认设置为4，对于CPU性能更强且内存更大的机器可以设置为5-8等，注意内存不大的机器将该值设置较高可能会出现错误："
-	echo "c++: internal compiler error: 已杀死 (program cc1plus)"
-	while :
-	do
-		read -p "输入你期望的值（建议默认值）：" option
-		if [ $option -lt 3 ]
-		then
-		 	echo "过小"
-		else
-			if [ $option -gt 8 ]
-			then
-				echo "过大"
-			else
-				break
-			fi
-		fi
-	done
-	# git clone https://github.com/opencv/opencv.git
-	if [ ! -d "opencv" ] && [ ! -f "opencv.zip" ]
-	then
-		echo "没有找到opencv或opencv.zip，已结束"
-		exit
-	fi
-	# git clone https://github.com/opencv/opencv_contrib.git
-	if [ ! -f "opencv_contrib.zip" ]
-	then
-		echo "没有找到opencv_contrib.zip，已结束"
-		exit
-	fi
-	# ./get_opencv_addition.sh
-	if [ ! -f "opencv_addition.zip" ]
-	then
-		echo "没有找到opencv_addition.zip，已结束"
-		exit
-	fi
-	# git clone https://github.com/opencv/opencv_extra.git
-	if [ ! -f "opencv_extra.zip" ]
-	then
-		echo "没有找到opencv_extra.zip，已结束"
-		exit
-	fi
-	sudo apt-get install pkg-config make cmake git -y
-	sudo apt-get install build-essential -y
-	sudo apt-get install libgtk2.0-dev libavcodec-dev libavformat-dev libswscale-dev -y
-	sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libdc1394-22-dev -y
-	sudo apt-get install libcanberra-gtk-module -y
-	judge=$(grep -c "deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse" /etc/apt/sources.list)
-	if [ $judge -eq "0" ]
-	then
-		sudo add-apt-repository "deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse"
-	fi	
-	sudo apt-get install libjasper-dev -y
-	if [ ! -d "opencv" ]
-	then
-		unzip opencv.zip
-	fi
-	unzip opencv_contrib.zip
-	unzip opencv_addition.zip
-	OPENCV_ICV_NAME=ippicv_2020_lnx_intel64_20191018_general.tgz
-	cp opencv_addition/$OPENCV_ICV_NAME opencv/3rdparty/ippicv/$OPENCV_ICV_NAME
-	cp opencv_addition/face_landmark_model.dat opencv_contrib/modules/face/face_landmark_model.dat
-	cp -r opencv_addition/download_boostdesc opencv_contrib/
-	cp -r opencv_addition/download_vgg opencv_contrib/
-	rm -rf opencv_addition	
-cat > opencv/3rdparty/ippicv/ippicv.cmake << END_TEXT
+if [ $option -eq 1 ]; then
+  sudo echo "安装OpenCV..."
+  parallel=4
+  echo "并行编译可以加快编译的速度，逻辑任务线程数量默认设置为4，对于CPU性能更强且内存更大的机器可以设置为5-8等，注意内存不大的机器将该值设置较高可能会出现错误："
+  echo "c++: internal compiler error: 已杀死 (program cc1plus)"
+  while :; do
+    read -p "输入你期望的值（建议默认值）：" option
+    if [ $option -lt 3 ]; then
+      echo "过小"
+    else
+      if [ $option -gt 8 ]; then
+        echo "过大"
+      else
+        break
+      fi
+    fi
+  done
+  # git clone https://github.com/opencv/opencv.git
+  if [ ! -d "opencv" ] && [ ! -f "opencv.zip" ]; then
+    echo "没有找到opencv或opencv.zip，已结束"
+    exit
+  fi
+  # git clone https://github.com/opencv/opencv_contrib.git
+  if [ ! -f "opencv_contrib.zip" ]; then
+    echo "没有找到opencv_contrib.zip，已结束"
+    exit
+  fi
+  # ./get_opencv_addition.sh
+  if [ ! -f "opencv_addition.zip" ]; then
+    echo "没有找到opencv_addition.zip，已结束"
+    exit
+  fi
+  # git clone https://github.com/opencv/opencv_extra.git
+  if [ ! -f "opencv_extra.zip" ]; then
+    echo "没有找到opencv_extra.zip，已结束"
+    exit
+  fi
+  sudo apt-get install pkg-config make cmake git -y
+  sudo apt-get install build-essential -y
+  sudo apt-get install libgtk2.0-dev libavcodec-dev libavformat-dev libswscale-dev -y
+  sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libdc1394-22-dev -y
+  sudo apt-get install libcanberra-gtk-module -y
+  judge=$(grep -c "deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse" /etc/apt/sources.list)
+  if [ $judge -eq "0" ]; then
+    sudo add-apt-repository "deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse"
+  fi
+  sudo apt-get install libjasper-dev -y
+  if [ ! -d "opencv" ]; then
+    unzip opencv.zip
+  fi
+  unzip opencv_contrib.zip
+  unzip opencv_addition.zip
+  OPENCV_ICV_NAME=ippicv_2020_lnx_intel64_20191018_general.tgz
+  cp opencv_addition/$OPENCV_ICV_NAME opencv/3rdparty/ippicv/$OPENCV_ICV_NAME
+  cp opencv_addition/face_landmark_model.dat opencv_contrib/modules/face/face_landmark_model.dat
+  cp -r opencv_addition/download_boostdesc opencv_contrib/
+  cp -r opencv_addition/download_vgg opencv_contrib/
+  rm -rf opencv_addition
+  cat >opencv/3rdparty/ippicv/ippicv.cmake <<END_TEXT
 function(download_ippicv root_var)
   set(\${root_var} "" PARENT_SCOPE)
 
@@ -131,7 +120,7 @@ function(download_ippicv root_var)
   endif()
 endfunction()
 END_TEXT
-cat > opencv_contrib/modules/face/CMakeLists.txt << END_TEXT
+  cat >opencv_contrib/modules/face/CMakeLists.txt <<END_TEXT
 set(the_description "Face recognition etc")
 ocv_define_module(face opencv_core
     opencv_imgproc
@@ -160,7 +149,7 @@ if(NOT res)
   message(WARNING "Face: Can't get model file for face alignment.")
 endif()
 END_TEXT
-cat > opencv_contrib/modules/xfeatures2d/cmake/download_boostdesc.cmake << END_TEXT
+  cat >opencv_contrib/modules/xfeatures2d/cmake/download_boostdesc.cmake <<END_TEXT
 function(download_boost_descriptors dst_dir status_var)
   set(OPENCV_3RDPARTY_COMMIT "34e4206aef44d50e6bbcd0ab06354b52e7466d26")
 
@@ -198,7 +187,7 @@ function(download_boost_descriptors dst_dir status_var)
   endforeach()
 endfunction()
 END_TEXT
-cat > opencv_contrib/modules/xfeatures2d/cmake/download_vgg.cmake << END_TEXT
+  cat >opencv_contrib/modules/xfeatures2d/cmake/download_vgg.cmake <<END_TEXT
 function(download_vgg_descriptors dst_dir status_var)
   set(OPENCV_3RDPARTY_COMMIT "fccf7cd6a4b12079f73bbfb21745f9babcd4eb1d")
 
@@ -230,24 +219,22 @@ function(download_vgg_descriptors dst_dir status_var)
   endforeach()
 endfunction()
 END_TEXT
-	cd opencv
-	if [ ! -d "build" ]
-	then
-		mkdir build
-	fi
-	cd build
-	# 这里的build就是opencv/3rdparty/ippicv/ippicv.cmake中${OpenCV_BINARY_DIR}所指的路径
-	cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local -D OPENCV_GENERATE_PKGCONFIG=ON -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules ..
-	make -j$parallel
-	sudo make install
-	if [ -d "${HOME}/OpenCVtest" ]
-	then
-		sudo rm -rf ${HOME}/OpenCVtest
-	fi
-	mkdir ${HOME}/OpenCVtest
-	touch ${HOME}/OpenCVtest/CMakeLists.txt
-	touch ${HOME}/OpenCVtest/main.cpp
-cat > ${HOME}/OpenCVtest/CMakeLists.txt << END_TEXT
+  cd opencv
+  if [ ! -d "build" ]; then
+    mkdir build
+  fi
+  cd build
+  # 这里的build就是opencv/3rdparty/ippicv/ippicv.cmake中${OpenCV_BINARY_DIR}所指的路径
+  cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local -D OPENCV_GENERATE_PKGCONFIG=ON -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules ..
+  make -j$parallel
+  sudo make install
+  if [ -d "${HOME}/OpenCVtest" ]; then
+    sudo rm -rf ${HOME}/OpenCVtest
+  fi
+  mkdir ${HOME}/OpenCVtest
+  touch ${HOME}/OpenCVtest/CMakeLists.txt
+  touch ${HOME}/OpenCVtest/main.cpp
+  cat >${HOME}/OpenCVtest/CMakeLists.txt <<END_TEXT
 set(SRC_LIST main.cpp)
 cmake_minimum_required(VERSION 2.8)
 project(main)
@@ -255,7 +242,7 @@ find_package(OpenCV REQUIRED)
 add_executable(main \${SRC_LIST})
 target_link_libraries(main \${OpenCV_LIBS})
 END_TEXT
-cat > ${HOME}/OpenCVtest/main.cpp << END_TEXT
+  cat >${HOME}/OpenCVtest/main.cpp <<END_TEXT
 #include <stdio.h>
 #include <opencv2/opencv.hpp>
 using namespace cv;
@@ -277,44 +264,42 @@ int main(int argc, char **argv)
     return 0;
 }
 END_TEXT
-	cd $curr
-	unzip opencv_extra.zip
-	mv opencv_extra ${HOME}/OpenCVtest/
-	mv opencv ${HOME}/OpenCVtest/
-	mv opencv_contrib ${HOME}/OpenCVtest/
-	cp icon/google.jpg ${HOME}/OpenCVtest/google.jpg
-	if [ $(grep -c "export OPENCV_TEST_DATA_PATH=${HOME}/OpenCVtest/opencv_extra/testdata" /etc/bash.bashrc) -eq 0 ]
-	then
-		sudo sh -c 'echo "export OPENCV_TEST_DATA_PATH=${HOME}/OpenCVtest/opencv_extra/testdata" >> /etc/bash.bashrc'
-	fi
-	source /etc/bash.bashrc
-	if [ $(grep -c "export OPENCV_TEST_DATA_PATH=${HOME}/OpenCVtest/opencv_extra/testdata" ${HOME}/.bashrc) -eq 0 ]
-	then
-		echo "export OPENCV_TEST_DATA_PATH=${HOME}/OpenCVtest/opencv_extra/testdata" >> ${HOME}/.bashrc
-	fi
-	source ${HOME}/.bashrc
-	echo
-	echo "已成功安装OpenCV"
-	echo "pkg-config --modversion opencv4"
-	pkg-config --modversion opencv4
-	echo "pkg-config --cflags --libs opencv4"
-	pkg-config --cflags --libs opencv4
-	echo "OpenCV的简单实例已保存至主目录下的OpenCVtest，编译并运行："
-	echo "cmake ."
-	echo "make"
-	echo "./main google.jpg"
-	echo "OpenCV的官方实例见主目录下的OpenCVtest/opencv/samples"
-	echo "已经成功配置OpenCV官方数据的环境变量OPENCV_TEST_DATA_PATH"
-	echo "通过echo \$OPENCV_TEST_DATA_PATH命令查看官方数据的目录"
-	echo "OpenCV官方文档"
-	echo "https://docs.opencv.org/"
-	echo "Doxygen HTML 4.3.0.tar.xz"
-	echo "4.3.0/index.html"
+  cd $curr
+  unzip opencv_extra.zip
+  mv opencv_extra ${HOME}/OpenCVtest/
+  mv opencv ${HOME}/OpenCVtest/
+  mv opencv_contrib ${HOME}/OpenCVtest/
+  cp icon/google.jpg ${HOME}/OpenCVtest/google.jpg
+  if [ $(grep -c "export OPENCV_TEST_DATA_PATH=${HOME}/OpenCVtest/opencv_extra/testdata" /etc/bash.bashrc) -eq 0 ]; then
+    sudo sh -c 'echo "export OPENCV_TEST_DATA_PATH=${HOME}/OpenCVtest/opencv_extra/testdata" >> /etc/bash.bashrc'
+  fi
+  source /etc/bash.bashrc
+  if [ $(grep -c "export OPENCV_TEST_DATA_PATH=${HOME}/OpenCVtest/opencv_extra/testdata" ${HOME}/.bashrc) -eq 0 ]; then
+    echo "export OPENCV_TEST_DATA_PATH=${HOME}/OpenCVtest/opencv_extra/testdata" >>${HOME}/.bashrc
+  fi
+  source ${HOME}/.bashrc
+  echo
+  echo "已成功安装OpenCV"
+  echo "pkg-config --modversion opencv4"
+  pkg-config --modversion opencv4
+  echo "pkg-config --cflags --libs opencv4"
+  pkg-config --cflags --libs opencv4
+  echo "OpenCV的简单实例已保存至主目录下的OpenCVtest，编译并运行："
+  echo "cmake ."
+  echo "make"
+  echo "./main google.jpg"
+  echo "OpenCV的官方实例见主目录下的OpenCVtest/opencv/samples"
+  echo "已经成功配置OpenCV官方数据的环境变量OPENCV_TEST_DATA_PATH"
+  echo "通过echo \$OPENCV_TEST_DATA_PATH命令查看官方数据的目录"
+  echo "OpenCV官方文档"
+  echo "https://docs.opencv.org/"
+  echo "Doxygen HTML 4.3.0.tar.xz"
+  echo "4.3.0/index.html"
 else
-	sudo echo "卸载OpenCV..."
-	sudo apt-get remove --purge libgtk2.0-dev libavcodec-dev libavformat-dev libswscale-dev -y
-	sudo apt-get remove --purge python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libdc1394-22-dev -y
-	sudo apt-get remove --purge libjasper-dev -y
-	sudo apt-get remove --purge libcanberra-gtk-module -y
-	sudo apt-get autoremove -y
+  sudo echo "卸载OpenCV..."
+  sudo apt-get remove --purge libgtk2.0-dev libavcodec-dev libavformat-dev libswscale-dev -y
+  sudo apt-get remove --purge python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libdc1394-22-dev -y
+  sudo apt-get remove --purge libjasper-dev -y
+  sudo apt-get remove --purge libcanberra-gtk-module -y
+  sudo apt-get autoremove -y
 fi

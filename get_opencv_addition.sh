@@ -2,8 +2,7 @@
 echo "清注意：该脚本必须在VPN连接下执行！"
 sudo apt-get install wget -y
 sudo apt-get install zip -y
-if [ -d "opencv_addition" ]
-then
+if [ -d "opencv_addition" ]; then
 	sudo rm -rf opencv_addition
 fi
 mkdir opencv_addition
@@ -30,8 +29,7 @@ name_BINBOOST_128=boostdesc_binboost_128.i
 name_BINBOOST_256=boostdesc_binboost_256.i
 name_LBGM=boostdesc_lbgm.i
 name1=($name_BGM $name_BGM_BI $name_BGM_HD $name_BINBOOST_064 $name_BINBOOST_128 $name_BINBOOST_256 $name_LBGM)
-for i in {0..6}
-do
+for i in {0..6}; do
 	wget -t 0 https://raw.githubusercontent.com/opencv/opencv_3rdparty/$OPENCV_3RDPARTY_COMMIT1/${name1[i]}
 done
 cd ..
@@ -45,8 +43,7 @@ name_VGG_64=vgg_generated_64.i
 name_VGG_80=vgg_generated_80.i
 name_VGG_120=vgg_generated_120.i
 name2=($name_VGG_48 $name_VGG_64 $name_VGG_80 $name_VGG_120)
-for i in {0..3}
-do
+for i in {0..3}; do
 	wget -t 0 https://raw.githubusercontent.com/opencv/opencv_3rdparty/$OPENCV_3RDPARTY_COMMIT2/${name2[i]}
 done
 cd ..

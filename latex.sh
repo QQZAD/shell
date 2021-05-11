@@ -6,10 +6,8 @@ error=1
 currdir=$(pwd)
 URL=https://mirrors.aliyun.com/CTAN/systems/texlive/Images/texlive.iso
 year=2020
-if [ -n "$1" ] && [ ! -n "$2" ]
-then
-    if [ $1 == "1" ]
-    then
+if [ -n "$1" ] && [ ! -n "$2" ]; then
+    if [ $1 == "1" ]; then
         error=0
         echo "英文论文：选项——配置Texmaker——快速构建——快速构建命令——PdfLaTeX + 查看PDF——OK"
         echo "获取IEEE的模板"
@@ -80,6 +78,12 @@ then
         echo "∧ \land"
         echo "∨ \lor"
         echo "¬ \lnot"
+        echo "绝对值 \vert"
+        echo
+        echo "向上取整"
+        echo "\lceil x \rceil"
+        echo "向下取整"
+        echo "\lfloor x \rfloor"
         echo
         echo "多行注释"
         echo "Ctrl+T"
@@ -92,6 +96,10 @@ then
         echo
         echo "字体加粗"
         echo "\textbf{}"
+        echo
+        echo "字体颜色"
+        echo "\usepackage{xcolor}"
+        echo "\textcolor{red/green/blue}{}"
         echo
         echo "分条论述"
         echo "\begin{itemize}"
@@ -412,8 +420,7 @@ then
         echo
         texmaker_ini=${HOME}/.config/xm1/texmaker.ini
         # gedit ${HOME}/.config/xm1/texmaker.ini
-        if [ ! -f "$texmaker_ini" ]
-        then
+        if [ ! -f "$texmaker_ini" ]; then
             echo "没有找到${HOME}/.config/xm1/texmaker.ini"
             echo "打开并关闭一次Texmaker会自动生成此文件"
             exit
@@ -426,86 +433,85 @@ then
         Latex=${Latex%%:*}
         sed -i '/Tools\\Latex=/d' $texmaker_ini
         sed -i "${Latex}i $new_Latex" $texmaker_ini
-        
+
         echo "[2]为Texmaker设置Tools\Pdflatex路径"
         new_Pdflatex="Tools\\\Pdflatex=\"\\\\\"/usr/local/texlive/$year/bin/x86_64-linux/pdflatex\\\\\" -interaction=nonstopmode %.tex\""
         Pdflatex=$(grep -n "Tools\\\Pdflatex=" $texmaker_ini)
         Pdflatex=${Pdflatex%%:*}
         sed -i '/Tools\\Pdflatex=/d' $texmaker_ini
         sed -i "${Pdflatex}i $new_Pdflatex" $texmaker_ini
-        
+
         echo "[3]为Texmaker设置Tools\Xelatex路径"
         new_Xelatex="Tools\\\Xelatex=\"\\\\\"/usr/local/texlive/$year/bin/x86_64-linux/xelatex\\\\\" -interaction=nonstopmode %.tex\""
         Xelatex=$(grep -n "Tools\\\Xelatex=" $texmaker_ini)
         Xelatex=${Xelatex%%:*}
         sed -i '/Tools\\Xelatex=/d' $texmaker_ini
         sed -i "${Xelatex}i $new_Xelatex" $texmaker_ini
-        
+
         echo "[4]为Texmaker设置Tools\Lualatex路径"
         new_Lualatex="Tools\\\Lualatex=\"\\\\\"/usr/local/texlive/$year/bin/x86_64-linux/lualatex\\\\\" -interaction=nonstopmode %.tex\""
         Lualatex=$(grep -n "Tools\\\Lualatex=" $texmaker_ini)
         Lualatex=${Lualatex%%:*}
         sed -i '/Tools\\Lualatex=/d' $texmaker_ini
         sed -i "${Lualatex}i $new_Lualatex" $texmaker_ini
-        
+
         echo "[5]为Texmaker设置Tools\Latexmk路径"
         new_Latexmk="Tools\\\Latexmk=\"\\\\\"/usr/local/texlive/$year/bin/x86_64-linux/latexmk\\\\\" -e \\\\\"\\\$pdflatex=q/pdflatex -interaction=nonstopmode/\\\\\" -pdf %.tex\""
         Latexmk=$(grep -n "Tools\\\Latexmk=" $texmaker_ini)
         Latexmk=${Latexmk%%:*}
         sed -i '/Tools\\Latexmk=/d' $texmaker_ini
         sed -i "${Latexmk}i $new_Latexmk" $texmaker_ini
-        
+
         echo "[6]为Texmaker设置Tools\Bibtex路径"
         new_Bibtex="Tools\\\Bibtex=\\\\\"/usr/local/texlive/$year/bin/x86_64-linux/bibtex\\\\\" %.aux"
         Bibtex=$(grep -n "Tools\\\Bibtex=" $texmaker_ini)
         Bibtex=${Bibtex%%:*}
         sed -i '/Tools\\Bibtex=/d' $texmaker_ini
         sed -i "${Bibtex}i $new_Bibtex" $texmaker_ini
-        
+
         echo "[7]为Texmaker设置Tools\Makeindex路径"
         new_Makeindex="Tools\\\Makeindex=\\\\\"/usr/local/texlive/$year/bin/x86_64-linux/makeindex\\\\\" %.idx"
         Makeindex=$(grep -n "Tools\\\Makeindex=" $texmaker_ini)
         Makeindex=${Makeindex%%:*}
         sed -i '/Tools\\Makeindex=/d' $texmaker_ini
         sed -i "${Makeindex}i $new_Makeindex" $texmaker_ini
-        
+
         echo "[8]为Texmaker设置Tools\Dvips路径"
         new_Dvips="Tools\\\Dvips=\\\\\"/usr/local/texlive/$year/bin/x86_64-linux/dvips\\\\\" -o %.ps %.dvi"
         Dvips=$(grep -n "Tools\\\Dvips=" $texmaker_ini)
         Dvips=${Dvips%%:*}
         sed -i '/Tools\\Dvips=/d' $texmaker_ini
         sed -i "${Dvips}i $new_Dvips" $texmaker_ini
-        
+
         echo "[9]为Texmaker设置Tools\Dvipdf路径"
         new_Dvipdf="Tools\\\Dvipdf=\\\\\"/usr/local/texlive/$year/bin/x86_64-linux/dvipdfm\\\\\" %.dvi"
         Dvipdf=$(grep -n "Tools\\\Dvipdf=" $texmaker_ini)
         Dvipdf=${Dvipdf%%:*}
         sed -i '/Tools\\Dvipdf=/d' $texmaker_ini
         sed -i "${Dvipdf}i $new_Dvipdf" $texmaker_ini
-        
+
         echo "[10]为Texmaker设置Tools\Metapost路径"
         new_Metapost="Tools\\\Metapost=\"\\\\\"/usr/local/texlive/$year/bin/x86_64-linux/mpost\\\\\" --interaction nonstopmode\""
         Metapost=$(grep -n "Tools\\\Metapost=" $texmaker_ini)
         Metapost=${Metapost%%:*}
         sed -i '/Tools\\Metapost=/d' $texmaker_ini
         sed -i "${Metapost}i $new_Metapost" $texmaker_ini
-        
+
         echo "[11]为Texmaker设置Tools\Asymptote路径"
         new_Asymptote="Tools\\\Asymptote=\\\\\"/usr/local/texlive/$year/bin/x86_64-linux/asy\\\\\" %.asy"
         Asymptote=$(grep -n "Tools\\\Asymptote=" $texmaker_ini)
         Asymptote=${Asymptote%%:*}
         sed -i '/Tools\\Asymptote=/d' $texmaker_ini
         sed -i "${Asymptote}i $new_Asymptote" $texmaker_ini
-        
+
         echo "[12]为Texmaker设置环境变量PATH"
         new_ExtraPath="Tools\\\ExtraPath=/usr/local/texlive/$year/bin/x86_64-linux/"
         ExtraPath=$(grep -n "Tools\\\ExtraPath=" $texmaker_ini)
         ExtraPath=${ExtraPath%%:*}
         sed -i '/Tools\\ExtraPath=/d' $texmaker_ini
         sed -i "${ExtraPath}i $new_ExtraPath" $texmaker_ini
-        
-    elif [ $1 == "0" ]
-    then
+
+    elif [ $1 == "0" ]; then
         error=0
         sudo echo "卸载texlive和texmaker..."
         sudo apt-get --purge remove texmaker -y
@@ -517,25 +523,23 @@ then
         sudo rm -rf /etc/texmf
         sudo rm -rf ~/.texlive*
     fi
-elif [ ! -n "$1" ]
-then
+elif [ ! -n "$1" ]; then
     error=0
     sudo echo "安装texlive和texmaker..."
     sudo apt-get install texmaker -y
     name=texlive$year.iso
-    if [ ! -f "./$name" ]
-    then
+    if [ ! -f "./$name" ]; then
         echo "正在从网络获取$name"
         read -p "选择国内源（阿里云-1/清华大学-2）" answer
         case $answer in
-            1)
-                URL=https://mirrors.aliyun.com/CTAN/systems/texlive/Images/texlive.iso
+        1)
+            URL=https://mirrors.aliyun.com/CTAN/systems/texlive/Images/texlive.iso
             ;;
-            2)
-                URL=https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/texlive.iso
+        2)
+            URL=https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/texlive.iso
             ;;
-            *)
-                echo "输入错误,已选择阿里云"
+        *)
+            echo "输入错误,已选择阿里云"
             ;;
         esac
         echo -e "\e[32m注意：若在下载过程中突然卡住，依次执行以下命令：\e[0m"
@@ -548,7 +552,7 @@ then
     fi
     sudo mount -o loop $name /mnt
     cd /mnt
-	sudo ./install-tl <<EOF
+    sudo ./install-tl <<EOF
 I
 EOF
     cd $currdir
@@ -557,8 +561,7 @@ EOF
     echo "tex -version"
     tex -version
 fi
-if [ $error == "1" ]
-then
+if [ $error == "1" ]; then
     echo "./latex.sh	安装latex"
     echo "./latex.sh 1	配置latex"
     echo "./latex.sh 0	卸载latex"

@@ -4,8 +4,7 @@ read -p "按回车键继续..."
 sudo apt-get install make gcc libaio1 libglib2.0-dev -y
 sudo rm -rf ${HOME}/.vmware/VMWARE$version.der ${HOME}/.vmware/VMWARE$version.priv
 sudo vmware-modconfig --console --install-all
-if [ ! -d ${HOME}/.vmware ]
-then
+if [ ! -d ${HOME}/.vmware ]; then
     mkdir ${HOME}/.vmware
 fi
 cd ${HOME}/.vmware

@@ -3,15 +3,13 @@ curr=$(pwd)
 option=1
 # 1 to install, 0 to uninstall
 if [ -n "$1" ]; then
-	if [ $1 -eq "1" ]
-	then
+	if [ $1 -eq "1" ]; then
 		option=1
 	else
 		option=0
 	fi
 fi
-if [ $option -eq 1 ]
-then
+if [ $option -eq 1 ]; then
 	sudo echo "安装OpenGL..."
 	sudo apt-get install make -y
 	sudo apt-get install cmake -y
@@ -20,27 +18,23 @@ then
 	sudo apt-get install libgl1-mesa-dev -y
 	sudo apt-get install libglu1-mesa-dev -y
 	sudo apt-get install freeglut3-dev -y
-	if [ -d "${HOME}/OpenGLtest" ]
-	then
+	if [ -d "${HOME}/OpenGLtest" ]; then
 		sudo rm -rf ${HOME}/OpenGLtest
 	fi
 	mkdir ${HOME}/OpenGLtest
 	# http://glad.dav1d.de/
 	# glad库文件取决于OpenGL的版本号
 	sudo echo "安装glad..."
-	if [ ! -f "glad.zip" ]
-	then
+	if [ ! -f "glad.zip" ]; then
 		echo "没有找到glad.zip，已结束"
 		exit
 	else
 		unzip glad.zip -d glad
-		if [ -d "/usr/local/include/glad" ]
-		then
+		if [ -d "/usr/local/include/glad" ]; then
 			sudo rm -rf /usr/local/include/glad
 		fi
 		sudo cp -r glad/include/glad /usr/local/include
-		if [ -d "/usr/local/include/KHR" ]
-		then
+		if [ -d "/usr/local/include/KHR" ]; then
 			sudo rm -rf /usr/local/include/KHR
 		fi
 		sudo cp -r glad/include/KHR /usr/local/include
@@ -51,8 +45,7 @@ then
 	sudo apt-get install libsdl2-dev -y
 	# git clone https://github.com/glfw/glfw.git
 	sudo echo "安装glfw..."
-	if [ ! -f "glfw.zip" ]
-	then
+	if [ ! -f "glfw.zip" ]; then
 		echo "没有找到glfw.zip，已结束"
 		exit
 	else
@@ -69,7 +62,7 @@ then
 	touch ${HOME}/OpenGLtest/test1.c
 	touch ${HOME}/OpenGLtest/test2.c
 	touch ${HOME}/OpenGLtest/version.c
-cat > ${HOME}/OpenGLtest/Makefile << END_TEXT
+	cat >${HOME}/OpenGLtest/Makefile <<END_TEXT
 all: version test1 test2
 .PHONY: all
 version:
@@ -81,7 +74,7 @@ test2:
 clean:
 	rm -rf version test1 test2
 END_TEXT
-cat > ${HOME}/OpenGLtest/version.c << END_TEXT
+	cat >${HOME}/OpenGLtest/version.c <<END_TEXT
 #include <stdio.h>
 #include <GL/glut.h>
 
@@ -99,7 +92,7 @@ int main(int argc, char **argv)
 	return 0;
 }
 END_TEXT
-cat > ${HOME}/OpenGLtest/test1.c << END_TEXT
+	cat >${HOME}/OpenGLtest/test1.c <<END_TEXT
 #include <GL/glut.h>
 
 void init(void)
@@ -134,7 +127,7 @@ int main(int argc, char *argv[])
     return 0;
 }
 END_TEXT
-cat > ${HOME}/OpenGLtest/test2.c << END_TEXT
+	cat >${HOME}/OpenGLtest/test2.c <<END_TEXT
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <stdio.h>
@@ -223,8 +216,7 @@ else
 	sudo apt-get --purge remove libxrandr-dev -y
 	sudo apt-get --purge remove libsdl2-dev -y
 	sudo apt-get autoremove -y
-	if [ -d "${HOME}/OpenGLtest" ]
-	then
+	if [ -d "${HOME}/OpenGLtest" ]; then
 		sudo rm -rf ${HOME}/OpenGLtest
 	fi
 	sudo rm -rf /usr/local/include/GLFW
@@ -234,4 +226,3 @@ else
 	sudo rm -rf /usr/local/lib/pkgconfig/glfw3.pc
 	sudo rm -rf /usr/local/lib/libglfw3.a
 fi
-

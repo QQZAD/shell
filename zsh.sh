@@ -1,20 +1,16 @@
 #!/bin/bash
 # https://ohmyz.sh/#install
-if [ -n "$1" ]
-then
-    if [ $1 -eq "1" ]
-    then
+if [ -n "$1" ]; then
+    if [ $1 -eq "1" ]; then
         sudo echo "配置zsh..."
         read -p "按回车键继续..."
         # gedit ~/.zshrc
         sed -i "s#ZSH_THEME=\"robbyrussell\"#ZSH_THEME=\"agnoster\"#g" ~/.zshrc
-        if [ $(grep -c "source /usr/share/powerlevel9k/powerlevel9k.zsh-theme" ~/.zshrc) -eq 0 ]
-        then
-            echo "source /usr/share/powerlevel9k/powerlevel9k.zsh-theme" >> ~/.zshrc
+        if [ $(grep -c "source /usr/share/powerlevel9k/powerlevel9k.zsh-theme" ~/.zshrc) -eq 0 ]; then
+            echo "source /usr/share/powerlevel9k/powerlevel9k.zsh-theme" >>~/.zshrc
         fi
-        if [ $(grep -c "source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ~/.zshrc) -eq 0 ]
-        then
-            echo "source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
+        if [ $(grep -c "source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ~/.zshrc) -eq 0 ]; then
+            echo "source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >>~/.zshrc
         fi
         echo "1.编辑-首选项-文本-[打勾]自定义字体-Meslo LG S DZ for Powerline Regular-11"
         echo "2.编辑-首选项-颜色-[去勾]使用系统主题的颜色-内置方案-深色的Solarized"
@@ -24,8 +20,7 @@ then
         read -p "按回车键继续..."
         # whereis zsh
         # zsh: /usr/share/zsh
-        if [ -d "${HOME}/.oh-my-zsh" ]
-        then
+        if [ -d "${HOME}/.oh-my-zsh" ]; then
             chmod +x ${HOME}/.oh-my-zsh/tools/uninstall.sh
             ${HOME}/.oh-my-zsh/tools/uninstall.sh
         fi
@@ -36,8 +31,7 @@ then
     fi
 else
     sudo echo "安装zsh..."
-    if [ ! -f "powerline-fonts.zip" ]
-    then
+    if [ ! -f "powerline-fonts.zip" ]; then
         echo "在shell/中没有找到powerline-fonts.zip"
         exit
     fi
@@ -45,6 +39,7 @@ else
     # git clone https://github.com/powerline/fonts.git
     unzip powerline-fonts.zip
     cd powerline-fonts
+    ./install.sh
     sudo ./install.sh
     cd ..
     sudo chown ${USER}: -R ${HOME}/.local/share/fonts

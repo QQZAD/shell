@@ -2,35 +2,33 @@
 sudo apt-get install make -y
 read -p "选择编程语言(1-C/2-C++)：" answer
 case $answer in
-    1)
-        echo "已选择C语言"
-        language="C"
+1)
+    echo "已选择C语言"
+    language="C"
     ;;
-    2)
-        echo "已选择C++语言"
-        language="C++"
+2)
+    echo "已选择C++语言"
+    language="C++"
     ;;
-    *)
-        echo "输入错误,已选择C语言"
-        language="C"
-	answer=1
+*)
+    echo "输入错误,已选择C语言"
+    language="C"
+    answer=1
     ;;
 esac
 project_name="MakefileTest"
 echo "让我们通过一个$language语言项目实例来了解Makefile"
 echo "正在生成项目文件夹$project_name..."
-if [ -d "${HOME}/$project_name/" ]
-then
+if [ -d "${HOME}/$project_name/" ]; then
     sudo rm -rf ${HOME}/$project_name/
 fi
 sudo mkdir ${HOME}/$project_name/
 sudo mkdir ${HOME}/$project_name/include/
 sudo chown ${USER}: -R ${HOME}/$project_name/
 cd ${HOME}/$project_name/
-if [ $answer -eq 1 ]
-then
+if [ $answer -eq 1 ]; then
     # Makefile
-cat > Makefile << END_TEXT
+    cat >Makefile <<END_TEXT
 cc = gcc
 prom = main
 inc = include/
@@ -46,7 +44,7 @@ clean:
 	rm -rf \$(prom) \$(obj)
 END_TEXT
     # main.h
-cat > include/main.h << END_TEXT
+    cat >include/main.h <<END_TEXT
 //main.h
 #include <stdio.h>
 #include "sin_value.h"
@@ -55,7 +53,7 @@ cat > include/main.h << END_TEXT
 #include "multi_thread.h"
 END_TEXT
     # main.c
-cat > main.c << END_TEXT
+    cat >main.c <<END_TEXT
 //main.c
 #include "main.h"
 double pi = 3.1415926535898;
@@ -72,12 +70,12 @@ int main()
 }
 END_TEXT
     # sin_value.h
-cat > include/sin_value.h << END_TEXT
+    cat >include/sin_value.h <<END_TEXT
 //sin_value.h
 void sin_value(double);
 END_TEXT
     # sin_value.c
-cat > sin_value.c << END_TEXT
+    cat >sin_value.c <<END_TEXT
 //sin_value.c
 #include <stdio.h>
 #include <math.h>
@@ -88,12 +86,12 @@ void sin_value(double angle)
 }
 END_TEXT
     # cos_value.h
-cat > include/cos_value.h << END_TEXT
+    cat >include/cos_value.h <<END_TEXT
 //cos_value.h
 void cos_value(double);
 END_TEXT
     # cos_value.c
-cat > cos_value.c << END_TEXT
+    cat >cos_value.c <<END_TEXT
 //cos_value.c
 #include <stdio.h>
 #include <math.h>
@@ -104,12 +102,12 @@ void cos_value(double angle)
 }
 END_TEXT
     # tan_value.h
-cat > include/tan_value.h << END_TEXT
+    cat >include/tan_value.h <<END_TEXT
 //tan_value.h
 void tan_value(double);
 END_TEXT
     # tan_value.c
-cat > tan_value.c << END_TEXT
+    cat >tan_value.c <<END_TEXT
 //tan_value.c
 #include <stdio.h>
 #include <math.h>
@@ -120,12 +118,12 @@ void tan_value(double angle)
 }
 END_TEXT
     # multi_thread.h
-cat > include/multi_thread.h << END_TEXT
+    cat >include/multi_thread.h <<END_TEXT
 //multi_thread.h
 void multi_thread();
 END_TEXT
     # multi_thread.c
-cat > multi_thread.c << END_TEXT
+    cat >multi_thread.c <<END_TEXT
 //multi_thread.c
 #include <stdio.h>
 #include <pthread.h>
@@ -206,7 +204,7 @@ void multi_thread()
 END_TEXT
 else
     # Makefile
-cat > Makefile << END_TEXT
+    cat >Makefile <<END_TEXT
 cc = g++
 prom = main
 inc = include/
@@ -222,7 +220,7 @@ clean:
 	rm -rf \$(prom) \$(obj)
 END_TEXT
     # main.hpp
-cat > include/main.hpp << END_TEXT
+    cat >include/main.hpp <<END_TEXT
 //main.hpp
 #include <iostream>
 #include "sin_value.hpp"
@@ -231,7 +229,7 @@ cat > include/main.hpp << END_TEXT
 #include "multi_thread.hpp"
 END_TEXT
     # main.cpp
-cat > main.cpp << END_TEXT
+    cat >main.cpp <<END_TEXT
 //main.cpp
 #include "main.hpp"
 double pi = 3.1415926535898;
@@ -248,12 +246,12 @@ int main()
 }
 END_TEXT
     # sin_value.hpp
-cat > include/sin_value.hpp << END_TEXT
+    cat >include/sin_value.hpp <<END_TEXT
 //sin_value.hpp
 void sin_value(double);
 END_TEXT
     # sin_value.cpp
-cat > sin_value.cpp << END_TEXT
+    cat >sin_value.cpp <<END_TEXT
 //sin_value.cpp
 #include <iostream>
 #include <math.h>
@@ -264,12 +262,12 @@ void sin_value(double angle)
 }
 END_TEXT
     # cos_value.hpp
-cat > include/cos_value.hpp << END_TEXT
+    cat >include/cos_value.hpp <<END_TEXT
 //cos_value.hpp
 void cos_value(double);
 END_TEXT
     # cos_value.cpp
-cat > cos_value.cpp << END_TEXT
+    cat >cos_value.cpp <<END_TEXT
 //cos_value.cpp
 #include <iostream>
 #include <math.h>
@@ -280,12 +278,12 @@ void cos_value(double angle)
 }
 END_TEXT
     # tan_value.hpp
-cat > include/tan_value.hpp << END_TEXT
+    cat >include/tan_value.hpp <<END_TEXT
 //tan_value.hpp
 void tan_value(double);
 END_TEXT
     # tan_value.cpp
-cat > tan_value.cpp << END_TEXT
+    cat >tan_value.cpp <<END_TEXT
 //tan_value.cpp
 #include <iostream>
 #include <math.h>
@@ -296,12 +294,12 @@ void tan_value(double angle)
 }
 END_TEXT
     # multi_thread.hpp
-cat > include/multi_thread.hpp << END_TEXT
+    cat >include/multi_thread.hpp <<END_TEXT
 //multi_thread.hpp
 void multi_thread();
 END_TEXT
     # multi_thread.cpp
-cat > multi_thread.cpp << END_TEXT
+    cat >multi_thread.cpp <<END_TEXT
 //multi_thread.cpp
 #include <iostream>
 #include <pthread.h>

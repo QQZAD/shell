@@ -48,7 +48,6 @@ CHSH=${CHSH:-yes}
 RUNZSH=${RUNZSH:-yes}
 KEEP_ZSHRC=${KEEP_ZSHRC:-no}
 
-
 command_exists() {
     command -v "$@" >/dev/null 2>&1
 }
@@ -87,29 +86,29 @@ setup_ohmyzsh() {
     # that this will be ignored under Cygwin by default, as Windows ACLs take
     # precedence over umasks except for filesystems mounted with option "noacl".
     umask g-w,o-w
-    
+
     echo "${BLUE}Cloning Oh My Zsh...${RESET}"
-    
+
     command_exists git || {
         error "git is not installed"
         exit 1
     }
-    
+
     if [ "$OSTYPE" = cygwin ] && git --version | grep -q msysgit; then
         error "Windows/MSYS Git is not supported on Cygwin"
         error "Make sure the Cygwin git package is installed and is first on the \$PATH"
         exit 1
     fi
-    
+
     git clone -c core.eol=lf -c core.autocrlf=false \
-    -c fsck.zeroPaddedFilemode=ignore \
-    -c fetch.fsck.zeroPaddedFilemode=ignore \
-    -c receive.fsck.zeroPaddedFilemode=ignore \
-    --depth=1 --branch "$BRANCH" "$REMOTE" "$ZSH" || {
+        -c fsck.zeroPaddedFilemode=ignore \
+        -c fetch.fsck.zeroPaddedFilemode=ignore \
+        -c receive.fsck.zeroPaddedFilemode=ignore \
+        --depth=1 --branch "$BRANCH" "$REMOTE" "$ZSH" || {
         error "git clone of oh-my-zsh repo failed"
         exit 1
     }
-    
+
     echo
 }
 
@@ -118,7 +117,7 @@ setup_zshrc() {
     # with datestamp of installation that moved them aside, so we never actually
     # destroy a user's original zshrc
     echo "${BLUE}Looking for an existing zsh config...${RESET}"
-    
+
     # Must use this exact name so uninstall.sh can find it
     OLD_ZSHRC=~/.zshrc.pre-oh-my-zsh
     if [ -f ~/.zshrc ] || [ -h ~/.zshrc ]; then
@@ -135,21 +134,21 @@ setup_zshrc() {
                 exit 1
             fi
             mv "$OLD_ZSHRC" "${OLD_OLD_ZSHRC}"
-            
+
             echo "${YELLOW}Found old ~/.zshrc.pre-oh-my-zsh." \
-            "${GREEN}Backing up to ${OLD_OLD_ZSHRC}${RESET}"
+                "${GREEN}Backing up to ${OLD_OLD_ZSHRC}${RESET}"
         fi
         echo "${YELLOW}Found ~/.zshrc.${RESET} ${GREEN}Backing up to ${OLD_ZSHRC}${RESET}"
         mv ~/.zshrc "$OLD_ZSHRC"
     fi
-    
+
     echo "${GREEN}Using the Oh My Zsh template file and adding it to ~/.zshrc.${RESET}"
-    
+
     sed "/^export ZSH=/ c\\
 export ZSH=\"$ZSH\"
-    " "$ZSH/templates/zshrc.zsh-template" > ~/.zshrc-omztemp
+    " "$ZSH/templates/zshrc.zsh-template" >~/.zshrc-omztemp
     mv -f ~/.zshrc-omztemp ~/.zshrc
-    
+
     echo
 }
 
@@ -158,49 +157,58 @@ setup_shell() {
     if [ $CHSH = no ]; then
         return
     fi
-    
+
     # If this user's login shell is already "zsh", do not attempt to switch.
     if [ "$(basename "$SHELL")" = "zsh" ]; then
         return
     fi
-    
+
     # If this platform doesn't provide a "chsh" command, bail out.
     if ! command_exists chsh; then
-		cat <<-EOF
+        cat <<-EOF
 			I can't change your shell automatically because this system does not have chsh.
 			${BLUE}Please manually change your default shell to zsh${RESET}
 		EOF
         return
     fi
-    
+
     echo "${BLUE}Time to change your default shell to zsh:${RESET}"
-    
+
     # Prompt for user choice on changing the default login shell
     printf "${YELLOW}Do you want to change your default shell to zsh? [Y/n]${RESET} "
     read opt
     case $opt in
-        y*|Y*|"") echo "Changing the shell..." ;;
-        n*|N*) echo "Shell change skipped."; return ;;
-        *) echo "Invalid choice. Shell change skipped."; return ;;
+    y* | Y* | "") echo "Changing the shell..." ;;
+    n* | N*)
+        echo "Shell change skipped."
+        return
+        ;;
+    *)
+        echo "Invalid choice. Shell change skipped."
+        return
+        ;;
     esac
-    
+
     # Check if we're running on Termux
     case "$PREFIX" in
-        *com.termux*) termux=true; zsh=zsh ;;
-        *) termux=false ;;
+    *com.termux*)
+        termux=true
+        zsh=zsh
+        ;;
+    *) termux=false ;;
     esac
-    
+
     if [ "$termux" != true ]; then
         # Test for the right location of the "shells" file
         if [ -f /etc/shells ]; then
             shells_file=/etc/shells
-            elif [ -f /usr/share/defaults/etc/shells ]; then # Solus OS
+        elif [ -f /usr/share/defaults/etc/shells ]; then # Solus OS
             shells_file=/usr/share/defaults/etc/shells
         else
             error "could not find /etc/shells file. Change your default shell manually."
             return
         fi
-        
+
         # Get the path to the right zsh binary
         # 1. Use the most preceding one based on $PATH, then check that it's in the shells file
         # 2. If that fails, get a zsh path from the shells file, then check it actually exists
@@ -212,14 +220,14 @@ setup_shell() {
             fi
         fi
     fi
-    
+
     # We're going to change the default shell, so back up the current one
     if [ -n "$SHELL" ]; then
-        echo $SHELL > ~/.shell.pre-oh-my-zsh
+        echo $SHELL >~/.shell.pre-oh-my-zsh
     else
-        grep "^$USER:" /etc/passwd | awk -F: '{print $7}' > ~/.shell.pre-oh-my-zsh
+        grep "^$USER:" /etc/passwd | awk -F: '{print $7}' >~/.shell.pre-oh-my-zsh
     fi
-    
+
     # Actually change the default shell to zsh
     if ! chsh -s "$zsh"; then
         error "chsh command unsuccessful. Change your default shell manually."
@@ -227,7 +235,7 @@ setup_shell() {
         export SHELL="$zsh"
         echo "${GREEN}Shell successfully changed to '$zsh'.${RESET}"
     fi
-    
+
     echo
 }
 
@@ -237,38 +245,41 @@ main() {
         RUNZSH=no
         CHSH=no
     fi
-    
+
     # Parse arguments
     while [ $# -gt 0 ]; do
         case $1 in
-            --unattended) RUNZSH=no; CHSH=no ;;
-            --skip-chsh) CHSH=no ;;
-            --keep-zshrc) KEEP_ZSHRC=yes ;;
+        --unattended)
+            RUNZSH=no
+            CHSH=no
+            ;;
+        --skip-chsh) CHSH=no ;;
+        --keep-zshrc) KEEP_ZSHRC=yes ;;
         esac
         shift
     done
-    
+
     setup_color
-    
+
     if ! command_exists zsh; then
         echo "${YELLOW}Zsh is not installed.${RESET} Please install zsh first."
         exit 1
     fi
-    
+
     if [ -d "$ZSH" ]; then
-		cat <<-EOF
+        cat <<-EOF
 			${YELLOW}You already have Oh My Zsh installed.${RESET}
 			You'll need to remove '$ZSH' if you want to reinstall.
 		EOF
         exit 1
     fi
-    
+
     setup_ohmyzsh
     setup_zshrc
     setup_shell
-    
+
     printf "$GREEN"
-	cat <<-'EOF'
+    cat <<-'EOF'
 		         __                                     __
 		  ____  / /_     ____ ___  __  __   ____  _____/ /_
 		 / __ \/ __ \   / __ `__ \/ / / /  /_  / / ___/ __ \
@@ -278,7 +289,7 @@ main() {
 
 
 	EOF
-	cat <<-EOF
+    cat <<-EOF
 		Before you scream Oh My Zsh! please look over the ~/.zshrc file to select plugins, themes, and options.
 
 		• Follow us on Twitter: $(underline https://twitter.com/ohmyzsh)
@@ -287,12 +298,12 @@ main() {
 
 	EOF
     printf "$RESET"
-    
+
     if [ $RUNZSH = no ]; then
         echo "${YELLOW}Run zsh to try it out.${RESET}"
         exit
     fi
-    
+
     exec zsh -l
 }
 

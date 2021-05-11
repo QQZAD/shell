@@ -11,8 +11,7 @@
 # vscdoe/TTF/FiraCode-Regular.ttf
 # vscdoe/TTF/FiraCode-Retina.ttf
 
-if [ -d "vscode/" ]
-then
+if [ -d "vscode/" ]; then
 	sudo chown ${USER}: -R vscode/
 	sudo rm -rf vscode/
 fi

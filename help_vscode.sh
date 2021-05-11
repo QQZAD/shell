@@ -58,8 +58,8 @@ echo "(5)源代码(Source Code)→ 预处理(Preprocessing)→ 预处理（宏�
 echo "*/"
 echo "\"-l\","
 echo "\"需链接的库文件1\",//如libpcre.so则为\"pcre\" 可以简写为-lpcre"
-echo "\"需链接的库文件2\",//如libcrypto.so则为\"crypto\" 可以简写为-lcrypto" 
-echo "\"需链接的库文件3\",//如libpthread.so则为\"pthread\" 可以简写为-lpthread" 
+echo "\"需链接的库文件2\",//如libcrypto.so则为\"crypto\" 可以简写为-lcrypto"
+echo "\"需链接的库文件3\",//如libpthread.so则为\"pthread\" 可以简写为-lpthread"
 echo "\"...\","
 echo "\"-L\","
 echo "\"需链接的库文件目录1\",//如/usr/lib/x86_64-linux-gnu"
@@ -78,5 +78,3 @@ echo
 echo "launch.json参数设置"
 echo "\"preLaunchTask\"用于配置要运行的任务名"
 echo "\${workspaceFolder}表示当前项目的工作目录"
-
-

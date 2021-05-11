@@ -1,3 +1,4 @@
+#!/bin/bash
 echo "容器运行时"
 echo "https://kubernetes.io/zh/docs/setup/production-environment/container-runtimes/"
 echo

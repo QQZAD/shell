@@ -3,8 +3,7 @@ Cur_Dir=$(pwd)
 ver=8.44
 ver2=10.36
 
-if [ ! -f "./pcre-$ver.tar.gz" ]
-then
+if [ ! -f "./pcre-$ver.tar.gz" ]; then
 	echo "正在从网络获取pcre-$ver.tar.gz"
 	wget https://ftp.pcre.org/pub/pcre/pcre-$ver.tar.gz
 else
@@ -18,8 +17,7 @@ sudo make install
 cd $Cur_Dir
 sudo rm -rf pcre-$ver
 
-if [ ! -f "./pcre2-$ver2.tar.gz" ]
-then
+if [ ! -f "./pcre2-$ver2.tar.gz" ]; then
 	echo "正在从网络获取pcre2-$ver2.tar.gz"
 	wget https://ftp.pcre.org/pub/pcre/pcre2-$ver2.tar.gz
 else
@@ -37,4 +35,3 @@ echo -e "\e[32mpcre-config --version\e[0m"
 pcre-config --version
 echo -e "\e[32mpcre2-config --version\e[0m"
 pcre2-config --version
-

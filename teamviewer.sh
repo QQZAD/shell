@@ -5,25 +5,20 @@ option=1
 platform=0
 #0表示Linux，1表示Raspbian Pi
 if [ -n "$1" ]; then
-    if [ $1 -eq "1" ]
-    then
+    if [ $1 -eq "1" ]; then
         option=1
     else
         option=0
     fi
 fi
-if [ $option -eq 1 ]
-then
+if [ $option -eq 1 ]; then
     sudo echo "安装teamviewer..."
-    if [ $platform -eq 0 ]
-    then
-        name=teamviewer_15.16.8_amd64.deb
-    elif [ $platform -eq 1 ]
-    then
-        name=teamviewer-host_15.16.8_armhf.deb
+    if [ $platform -eq 0 ]; then
+        name=teamviewer_15.17.6_amd64.deb
+    elif [ $platform -eq 1 ]; then
+        name=teamviewer-host_15.17.6_armhf.deb
     fi
-    if [ ! -f "./$name" ]
-    then
+    if [ ! -f "./$name" ]; then
         echo "正在从网络获取$name"
         wget --no-check-certificate https://dl.teamviewer.cn/download/linux/version_15x/$name
     else

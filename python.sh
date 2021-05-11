@@ -1,9 +1,8 @@
 #!/bin/bash
 sudo apt-get install python3 python3-dev python3-pip -y
 pip3 install --upgrade pip -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
-pip3 install numpy -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
-pip3 install matplotlib -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
-pip3 install scipy -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
+pip3 install numpy matplotlib scipy -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
+pip3 install autopep8 pep8 pycodestyle toml -i http://mirrors.aliyun.com/pypi/simple/ --trusted-host mirrors.aliyun.com
 echo "python2代码开头一般添加"
 echo "#!/usr/bin/python"
 echo "# -*- coding:utf-8 -*-"
